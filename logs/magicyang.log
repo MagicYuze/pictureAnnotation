@@ -1,0 +1,597 @@
+INFO 2020-06-16 20:35:20,001 autoreload 598 Watching for file changes with StatReloader
+INFO 2020-06-16 20:35:57,010 autoreload 598 Watching for file changes with StatReloader
+INFO 2020-06-16 20:36:02,711 autoreload 598 Watching for file changes with StatReloader
+INFO 2020-06-16 20:36:33,526 autoreload 222 E:\Learning\python\pictureAnnotation\pictureAnnotation\settings.py changed, reloading.
+INFO 2020-06-16 20:36:34,666 autoreload 598 Watching for file changes with StatReloader
+INFO 2020-06-16 20:36:36,696 basehttp 157 "GET / HTTP/1.1" 200 22919
+INFO 2020-06-16 20:36:36,907 basehttp 157 "GET /static/js/echarts-gl.min.js HTTP/1.1" 304 0
+WARNING 2020-06-16 20:36:39,172 log 228 Not Found: /favicon.ico
+WARNING 2020-06-16 20:36:39,174 basehttp 157 "GET /favicon.ico HTTP/1.1" 404 2085
+INFO 2020-06-16 20:37:16,428 autoreload 598 Watching for file changes with StatReloader
+INFO 2020-06-18 22:25:04,223 autoreload 598 Watching for file changes with StatReloader
+INFO 2020-06-18 22:25:08,745 basehttp 157 "GET / HTTP/1.1" 200 1142
+INFO 2020-06-18 22:25:08,825 basehttp 157 "GET /static/js/polybool.min.js HTTP/1.1" 200 22342
+INFO 2020-06-18 22:27:13,455 basehttp 157 "GET / HTTP/1.1" 200 34129
+INFO 2020-06-18 22:27:13,643 basehttp 157 "GET /static/js/polybool.min.js HTTP/1.1" 304 0
+INFO 2020-06-18 22:42:38,316 basehttp 157 "GET / HTTP/1.1" 200 1145
+INFO 2020-06-18 22:42:38,384 basehttp 157 "GET /static/js/AILabel.pkg.min.js HTTP/1.1" 200 82409
+WARNING 2020-06-18 22:42:38,665 log 228 Not Found: /imgs/demo.jpeg
+WARNING 2020-06-18 22:42:38,666 basehttp 157 "GET /imgs/demo.jpeg HTTP/1.1" 404 2094
+INFO 2020-06-18 22:42:53,649 basehttp 157 "GET / HTTP/1.1" 200 1126
+INFO 2020-06-18 22:42:53,737 basehttp 157 "GET /static/js/AILabel.pkg.min.js HTTP/1.1" 304 0
+WARNING 2020-06-18 22:42:53,795 log 228 Not Found: /imgs/demo.jpeg
+WARNING 2020-06-18 22:42:53,796 basehttp 157 "GET /imgs/demo.jpeg HTTP/1.1" 404 2094
+INFO 2020-06-18 22:43:00,894 basehttp 157 "GET / HTTP/1.1" 200 1110
+INFO 2020-06-18 22:43:00,961 basehttp 157 "GET /static/js/AILabel.pkg.min.js HTTP/1.1" 304 0
+WARNING 2020-06-18 22:43:01,026 log 228 Not Found: /imgs/demo.jpeg
+WARNING 2020-06-18 22:43:01,027 basehttp 157 "GET /imgs/demo.jpeg HTTP/1.1" 404 2094
+INFO 2020-06-18 22:43:44,518 basehttp 157 "GET / HTTP/1.1" 200 1115
+INFO 2020-06-18 22:43:44,557 basehttp 157 "GET /static/js/AILabel.pkg.min.js HTTP/1.1" 304 0
+INFO 2020-06-18 22:43:44,600 basehttp 157 "GET /static/images/demo.png HTTP/1.1" 200 61278
+INFO 2020-06-18 22:51:33,539 basehttp 157 "GET / HTTP/1.1" 200 1177
+INFO 2020-06-18 22:51:33,634 basehttp 157 "GET /static/js/AILabel.pkg.min.js HTTP/1.1" 304 0
+INFO 2020-06-18 22:53:32,274 basehttp 157 "GET / HTTP/1.1" 200 1184
+INFO 2020-06-18 22:53:32,385 basehttp 157 "GET /static/js/AILabel.pkg.min.js HTTP/1.1" 304 0
+INFO 2020-06-18 22:53:59,039 basehttp 157 "GET / HTTP/1.1" 200 1184
+INFO 2020-06-18 22:59:15,548 basehttp 157 "GET / HTTP/1.1" 200 1195
+INFO 2020-06-18 22:59:15,656 basehttp 157 "GET /static/js/AILabel.pkg.min.js HTTP/1.1" 304 0
+INFO 2020-06-18 23:01:05,485 basehttp 157 "GET / HTTP/1.1" 200 1226
+INFO 2020-06-18 23:01:05,636 basehttp 157 "GET /static/js/AILabel.pkg.min.js HTTP/1.1" 304 0
+INFO 2020-06-18 23:02:04,973 basehttp 157 "GET / HTTP/1.1" 200 1220
+INFO 2020-06-18 23:03:14,614 basehttp 157 "GET / HTTP/1.1" 200 1238
+INFO 2020-06-18 23:03:14,712 basehttp 157 "GET /static/js/AILabel.pkg.min.js HTTP/1.1" 304 0
+INFO 2020-06-19 22:07:03,330 autoreload 598 Watching for file changes with StatReloader
+INFO 2020-06-19 22:07:05,409 basehttp 157 "GET / HTTP/1.1" 200 1672
+INFO 2020-06-19 22:07:05,706 basehttp 157 "GET /static/js/AILabel.pkg.min.js HTTP/1.1" 304 0
+INFO 2020-06-19 22:07:05,836 basehttp 157 "GET /static/images/demo.png HTTP/1.1" 304 0
+WARNING 2020-06-19 22:07:05,947 log 228 Not Found: /favicon.ico
+WARNING 2020-06-19 22:07:05,948 basehttp 157 "GET /favicon.ico HTTP/1.1" 404 2085
+INFO 2020-06-19 22:10:00,321 basehttp 157 "GET / HTTP/1.1" 200 1705
+INFO 2020-06-19 22:11:45,414 basehttp 157 "GET / HTTP/1.1" 200 1725
+INFO 2020-06-19 22:12:00,124 basehttp 157 "GET / HTTP/1.1" 200 1729
+INFO 2020-06-19 22:16:18,681 basehttp 157 "GET / HTTP/1.1" 200 1945
+INFO 2020-06-19 22:16:20,293 basehttp 157 "GET / HTTP/1.1" 200 1945
+INFO 2020-06-19 22:16:21,767 basehttp 157 "GET / HTTP/1.1" 200 1945
+INFO 2020-06-19 22:16:23,224 basehttp 157 "GET / HTTP/1.1" 200 1945
+INFO 2020-06-19 22:16:45,092 basehttp 157 "GET / HTTP/1.1" 200 1962
+INFO 2020-06-19 22:16:45,840 basehttp 157 "GET / HTTP/1.1" 200 1962
+INFO 2020-06-19 22:16:46,388 basehttp 157 "GET / HTTP/1.1" 200 1962
+INFO 2020-06-19 22:16:57,837 basehttp 157 "GET / HTTP/1.1" 200 1958
+INFO 2020-06-19 22:17:31,154 basehttp 157 "GET / HTTP/1.1" 200 1967
+INFO 2020-06-19 22:21:17,538 basehttp 157 "GET / HTTP/1.1" 200 2000
+INFO 2020-06-19 22:22:10,996 basehttp 157 "GET / HTTP/1.1" 200 2004
+INFO 2020-06-19 22:22:57,906 basehttp 157 "GET / HTTP/1.1" 200 2008
+INFO 2020-06-19 22:23:04,169 basehttp 157 "GET / HTTP/1.1" 200 2008
+INFO 2020-06-19 22:23:04,968 basehttp 157 "GET / HTTP/1.1" 200 2008
+INFO 2020-06-19 22:23:05,328 basehttp 157 "GET / HTTP/1.1" 200 2008
+INFO 2020-06-19 22:23:05,668 basehttp 157 "GET / HTTP/1.1" 200 2008
+INFO 2020-06-19 22:23:06,320 basehttp 157 "GET / HTTP/1.1" 200 2008
+INFO 2020-06-19 22:23:12,727 basehttp 157 "GET / HTTP/1.1" 200 2008
+INFO 2020-06-19 22:23:12,988 basehttp 157 "GET /static/js/AILabel.pkg.min.js HTTP/1.1" 200 82409
+INFO 2020-06-19 22:23:13,047 basehttp 157 "GET /static/images/demo.png HTTP/1.1" 200 61278
+INFO 2020-06-20 09:40:29,384 autoreload 598 Watching for file changes with StatReloader
+INFO 2020-06-20 09:42:23,828 basehttp 157 "GET / HTTP/1.1" 200 9616
+INFO 2020-06-20 09:42:23,962 basehttp 157 "GET /static/js/AILabel.pkg.min.js HTTP/1.1" 304 0
+WARNING 2020-06-20 09:42:24,292 log 228 Not Found: /public/gdbox/demo/imgs/demo.jpeg
+WARNING 2020-06-20 09:42:24,294 log 228 Not Found: /public/gdbox/demo/imgs/marker.png
+WARNING 2020-06-20 09:42:24,296 basehttp 157 "GET /public/gdbox/demo/imgs/demo.jpeg HTTP/1.1" 404 2148
+WARNING 2020-06-20 09:42:24,297 basehttp 157 "GET /public/gdbox/demo/imgs/marker.png HTTP/1.1" 404 2151
+WARNING 2020-06-20 09:42:24,346 log 228 Not Found: /favicon.ico
+WARNING 2020-06-20 09:42:24,346 basehttp 157 "GET /favicon.ico HTTP/1.1" 404 2085
+INFO 2020-06-20 09:45:31,830 autoreload 222 E:\Learning\python\pictureAnnotation\pictureAnnotationSystem\views.py changed, reloading.
+INFO 2020-06-20 09:45:33,249 autoreload 598 Watching for file changes with StatReloader
+WARNING 2020-06-20 09:45:37,087 log 228 Not Found: /testDataBase/
+WARNING 2020-06-20 09:45:37,090 basehttp 157 "GET /testDataBase/ HTTP/1.1" 404 2196
+INFO 2020-06-20 09:45:39,903 basehttp 157 "GET /test HTTP/1.1" 301 0
+ERROR 2020-06-20 09:45:40,534 log 228 Internal Server Error: /test/
+Traceback (most recent call last):
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\Learning\python\pictureAnnotation\pictureAnnotationSystem\views.py", line 10, in showTest
+    return render(request, 'test.html')
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: test.html
+ERROR 2020-06-20 09:45:40,536 basehttp 157 "GET /test/ HTTP/1.1" 500 86434
+INFO 2020-06-20 09:45:59,259 basehttp 157 "GET /test/ HTTP/1.1" 200 2008
+INFO 2020-06-20 09:45:59,428 basehttp 157 "GET /static/images/demo.png HTTP/1.1" 304 0
+INFO 2020-06-20 10:04:09,247 basehttp 157 "GET /test/ HTTP/1.1" 200 2017
+INFO 2020-06-20 11:19:47,781 basehttp 157 "GET / HTTP/1.1" 200 9615
+WARNING 2020-06-20 11:19:48,163 log 228 Not Found: /public/gdbox/demo/imgs/demo.jpeg
+WARNING 2020-06-20 11:19:48,170 log 228 Not Found: /public/gdbox/demo/imgs/marker.png
+WARNING 2020-06-20 11:19:48,182 basehttp 157 "GET /public/gdbox/demo/imgs/demo.jpeg HTTP/1.1" 404 2253
+WARNING 2020-06-20 11:19:48,193 basehttp 157 "GET /public/gdbox/demo/imgs/marker.png HTTP/1.1" 404 2256
+INFO 2020-06-20 11:19:58,423 basehttp 157 "GET / HTTP/1.1" 200 9615
+WARNING 2020-06-20 11:19:58,732 log 228 Not Found: /public/gdbox/demo/imgs/marker.png
+WARNING 2020-06-20 11:19:58,735 log 228 Not Found: /public/gdbox/demo/imgs/demo.jpeg
+WARNING 2020-06-20 11:19:58,736 basehttp 157 "GET /public/gdbox/demo/imgs/marker.png HTTP/1.1" 404 2256
+WARNING 2020-06-20 11:19:58,737 basehttp 157 "GET /public/gdbox/demo/imgs/demo.jpeg HTTP/1.1" 404 2253
+INFO 2020-06-20 11:22:02,728 autoreload 598 Watching for file changes with StatReloader
+INFO 2020-06-20 11:22:04,057 basehttp 157 "GET / HTTP/1.1" 200 9615
+WARNING 2020-06-20 11:22:04,348 log 228 Not Found: /public/gdbox/demo/imgs/demo.jpeg
+WARNING 2020-06-20 11:22:04,350 log 228 Not Found: /public/gdbox/demo/imgs/marker.png
+WARNING 2020-06-20 11:22:04,363 basehttp 157 "GET /public/gdbox/demo/imgs/demo.jpeg HTTP/1.1" 404 2253
+WARNING 2020-06-20 11:22:04,365 basehttp 157 "GET /public/gdbox/demo/imgs/marker.png HTTP/1.1" 404 2256
+INFO 2020-06-20 11:26:24,628 basehttp 157 "GET / HTTP/1.1" 200 9617
+WARNING 2020-06-20 11:26:24,763 log 228 Not Found: /public/gdbox/demo/imgs/marker.png
+WARNING 2020-06-20 11:26:24,764 basehttp 157 "GET /public/gdbox/demo/imgs/marker.png HTTP/1.1" 404 2256
+INFO 2020-06-20 11:26:40,281 basehttp 157 "GET / HTTP/1.1" 200 9619
+WARNING 2020-06-20 11:26:40,407 log 228 Not Found: /public/gdbox/demo/imgs/marker.png
+WARNING 2020-06-20 11:26:40,409 basehttp 157 "GET /public/gdbox/demo/imgs/marker.png HTTP/1.1" 404 2256
+INFO 2020-06-20 11:26:41,088 basehttp 157 "GET / HTTP/1.1" 200 9619
+WARNING 2020-06-20 11:26:41,196 log 228 Not Found: /public/gdbox/demo/imgs/marker.png
+WARNING 2020-06-20 11:26:41,197 basehttp 157 "GET /public/gdbox/demo/imgs/marker.png HTTP/1.1" 404 2256
+INFO 2020-06-20 11:26:41,602 basehttp 157 "GET / HTTP/1.1" 200 9619
+WARNING 2020-06-20 11:26:41,717 log 228 Not Found: /public/gdbox/demo/imgs/marker.png
+WARNING 2020-06-20 11:26:41,722 basehttp 157 "GET /public/gdbox/demo/imgs/marker.png HTTP/1.1" 404 2256
+INFO 2020-06-20 11:26:42,030 basehttp 157 "GET / HTTP/1.1" 200 9619
+WARNING 2020-06-20 11:26:42,159 log 228 Not Found: /public/gdbox/demo/imgs/marker.png
+WARNING 2020-06-20 11:26:42,165 basehttp 157 "GET /public/gdbox/demo/imgs/marker.png HTTP/1.1" 404 2256
+INFO 2020-06-20 11:26:54,019 basehttp 157 "GET / HTTP/1.1" 200 9617
+WARNING 2020-06-20 11:26:54,321 log 228 Not Found: /public/gdbox/demo/imgs/marker.png
+WARNING 2020-06-20 11:26:54,326 basehttp 157 "GET /public/gdbox/demo/imgs/marker.png HTTP/1.1" 404 2256
+INFO 2020-06-20 11:27:23,028 basehttp 157 "GET / HTTP/1.1" 200 9619
+WARNING 2020-06-20 11:27:23,200 log 228 Not Found: /public/gdbox/demo/imgs/marker.png
+WARNING 2020-06-20 11:27:23,203 basehttp 157 "GET /public/gdbox/demo/imgs/marker.png HTTP/1.1" 404 2256
+INFO 2020-06-20 11:28:10,641 basehttp 157 "GET / HTTP/1.1" 200 9617
+WARNING 2020-06-20 11:28:10,910 log 228 Not Found: /public/gdbox/demo/imgs/demo.jpeg
+WARNING 2020-06-20 11:28:10,913 log 228 Not Found: /public/gdbox/demo/imgs/marker.png
+WARNING 2020-06-20 11:28:10,914 basehttp 157 "GET /public/gdbox/demo/imgs/demo.jpeg HTTP/1.1" 404 2253
+WARNING 2020-06-20 11:28:10,915 basehttp 157 "GET /public/gdbox/demo/imgs/marker.png HTTP/1.1" 404 2256
+INFO 2020-06-20 11:28:23,119 basehttp 157 "GET / HTTP/1.1" 200 9584
+WARNING 2020-06-20 11:28:23,269 log 228 Not Found: /public/gdbox/demo/imgs/marker.png
+WARNING 2020-06-20 11:28:23,274 basehttp 157 "GET /public/gdbox/demo/imgs/marker.png HTTP/1.1" 404 2256
+INFO 2020-06-20 11:28:24,111 basehttp 157 "GET / HTTP/1.1" 200 9584
+WARNING 2020-06-20 11:28:24,212 log 228 Not Found: /public/gdbox/demo/imgs/marker.png
+WARNING 2020-06-20 11:28:24,222 basehttp 157 "GET /public/gdbox/demo/imgs/marker.png HTTP/1.1" 404 2256
+INFO 2020-06-20 11:29:26,414 basehttp 157 "GET / HTTP/1.1" 200 9609
+WARNING 2020-06-20 11:29:26,577 log 228 Not Found: /public/gdbox/demo/imgs/marker.png
+WARNING 2020-06-20 11:29:26,587 basehttp 157 "GET /public/gdbox/demo/imgs/marker.png HTTP/1.1" 404 2256
+INFO 2020-06-20 11:30:38,456 basehttp 157 "GET / HTTP/1.1" 200 9661
+WARNING 2020-06-20 11:30:38,602 log 228 Not Found: /public/gdbox/demo/imgs/marker.png
+WARNING 2020-06-20 11:30:38,603 basehttp 157 "GET /public/gdbox/demo/imgs/marker.png HTTP/1.1" 404 2256
+INFO 2020-06-20 11:35:58,624 basehttp 157 "GET / HTTP/1.1" 200 9868
+WARNING 2020-06-20 11:35:58,795 log 228 Not Found: /public/gdbox/demo/imgs/marker.png
+WARNING 2020-06-20 11:35:58,796 basehttp 157 "GET /public/gdbox/demo/imgs/marker.png HTTP/1.1" 404 2256
+INFO 2020-06-20 11:36:16,726 basehttp 157 "GET / HTTP/1.1" 200 9869
+WARNING 2020-06-20 11:36:16,844 log 228 Not Found: /public/gdbox/demo/imgs/marker.png
+WARNING 2020-06-20 11:36:16,845 basehttp 157 "GET /public/gdbox/demo/imgs/marker.png HTTP/1.1" 404 2256
+INFO 2020-06-20 11:38:25,096 basehttp 157 "GET / HTTP/1.1" 200 10047
+WARNING 2020-06-20 11:38:25,287 log 228 Not Found: /public/gdbox/demo/imgs/marker.png
+WARNING 2020-06-20 11:38:25,292 basehttp 157 "GET /public/gdbox/demo/imgs/marker.png HTTP/1.1" 404 2256
+INFO 2020-06-20 11:39:43,998 basehttp 157 "GET / HTTP/1.1" 200 10074
+WARNING 2020-06-20 11:39:44,304 log 228 Not Found: /public/gdbox/demo/imgs/marker.png
+WARNING 2020-06-20 11:39:44,306 basehttp 157 "GET /public/gdbox/demo/imgs/marker.png HTTP/1.1" 404 2256
+INFO 2020-06-20 11:40:22,116 basehttp 157 "GET / HTTP/1.1" 200 10067
+WARNING 2020-06-20 11:40:22,559 log 228 Not Found: /public/gdbox/demo/imgs/marker.png
+WARNING 2020-06-20 11:40:22,587 basehttp 157 "GET /public/gdbox/demo/imgs/marker.png HTTP/1.1" 404 2256
+INFO 2020-06-20 11:41:24,948 basehttp 157 "GET / HTTP/1.1" 200 10074
+WARNING 2020-06-20 11:41:25,255 log 228 Not Found: /public/gdbox/demo/imgs/marker.png
+WARNING 2020-06-20 11:41:25,257 basehttp 157 "GET /public/gdbox/demo/imgs/marker.png HTTP/1.1" 404 2256
+INFO 2020-06-20 11:42:50,848 basehttp 157 "GET / HTTP/1.1" 200 10076
+WARNING 2020-06-20 11:42:51,059 log 228 Not Found: /public/gdbox/demo/imgs/marker.png
+WARNING 2020-06-20 11:42:51,060 basehttp 157 "GET /public/gdbox/demo/imgs/marker.png HTTP/1.1" 404 2256
+INFO 2020-06-20 11:44:28,055 basehttp 157 "GET / HTTP/1.1" 200 9927
+WARNING 2020-06-20 11:44:28,280 log 228 Not Found: /public/gdbox/demo/imgs/marker.png
+WARNING 2020-06-20 11:44:28,281 basehttp 157 "GET /public/gdbox/demo/imgs/marker.png HTTP/1.1" 404 2256
+INFO 2020-06-20 11:44:39,163 basehttp 157 "GET / HTTP/1.1" 200 9927
+WARNING 2020-06-20 11:44:39,363 log 228 Not Found: /public/gdbox/demo/imgs/marker.png
+WARNING 2020-06-20 11:44:39,365 basehttp 157 "GET /public/gdbox/demo/imgs/marker.png HTTP/1.1" 404 2256
+INFO 2020-06-20 11:52:57,042 basehttp 157 "GET / HTTP/1.1" 200 10095
+WARNING 2020-06-20 11:52:57,437 log 228 Not Found: /public/gdbox/demo/imgs/marker.png
+WARNING 2020-06-20 11:52:57,444 basehttp 157 "GET /public/gdbox/demo/imgs/marker.png HTTP/1.1" 404 2256
+INFO 2020-06-20 11:58:13,901 basehttp 157 "GET / HTTP/1.1" 200 10110
+WARNING 2020-06-20 11:58:14,305 log 228 Not Found: /public/gdbox/demo/imgs/marker.png
+WARNING 2020-06-20 11:58:14,308 basehttp 157 "GET /public/gdbox/demo/imgs/marker.png HTTP/1.1" 404 2256
+INFO 2020-06-20 16:10:32,378 autoreload 222 E:\Learning\python\pictureAnnotation\pictureAnnotationSystem\views.py changed, reloading.
+INFO 2020-06-20 16:10:33,749 autoreload 598 Watching for file changes with StatReloader
+INFO 2020-06-20 16:15:18,134 autoreload 222 E:\Learning\python\pictureAnnotation\pictureAnnotationSystem\views.py changed, reloading.
+INFO 2020-06-20 16:15:19,340 autoreload 598 Watching for file changes with StatReloader
+INFO 2020-06-20 16:18:23,059 autoreload 222 E:\Learning\python\pictureAnnotation\pictureAnnotation\urls.py changed, reloading.
+INFO 2020-06-20 16:18:25,164 autoreload 598 Watching for file changes with StatReloader
+INFO 2020-06-20 16:27:02,956 autoreload 222 E:\Learning\python\pictureAnnotation\pictureAnnotationSystem\views.py changed, reloading.
+INFO 2020-06-20 16:27:04,209 autoreload 598 Watching for file changes with StatReloader
+INFO 2020-06-20 16:28:27,378 autoreload 222 E:\Learning\python\pictureAnnotation\pictureAnnotation\urls.py changed, reloading.
+INFO 2020-06-20 16:28:28,821 autoreload 598 Watching for file changes with StatReloader
+INFO 2020-06-20 16:47:03,174 autoreload 222 E:\Learning\python\pictureAnnotation\pictureAnnotation\urls.py changed, reloading.
+INFO 2020-06-20 16:47:05,239 autoreload 598 Watching for file changes with StatReloader
+ERROR 2020-06-20 16:47:32,545 log 228 Internal Server Error: /
+Traceback (most recent call last):
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\Learning\python\pictureAnnotation\pictureAnnotationSystem\views.py", line 17, in showIndex
+    return render(request, 'index.html')
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\template\defaulttags.py", line 443, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\urls\base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\urls\resolvers.py", line 677, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'file' not found. 'file' is not a valid view function or pattern name.
+ERROR 2020-06-20 16:47:32,549 basehttp 157 "GET / HTTP/1.1" 500 125828
+INFO 2020-06-20 16:48:32,869 autoreload 222 E:\Learning\python\pictureAnnotation\pictureAnnotation\urls.py changed, reloading.
+INFO 2020-06-20 16:48:34,382 autoreload 598 Watching for file changes with StatReloader
+ERROR 2020-06-20 16:48:36,183 log 228 Internal Server Error: /
+Traceback (most recent call last):
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\Learning\python\pictureAnnotation\pictureAnnotationSystem\views.py", line 17, in showIndex
+    return render(request, 'index.html')
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\template\defaulttags.py", line 443, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\urls\base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\urls\resolvers.py", line 677, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'file_upload' not found. 'file_upload' is not a valid view function or pattern name.
+ERROR 2020-06-20 16:48:36,188 basehttp 157 "GET / HTTP/1.1" 500 126521
+ERROR 2020-06-20 16:49:57,794 log 228 Internal Server Error: /
+Traceback (most recent call last):
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\Learning\python\pictureAnnotation\pictureAnnotationSystem\views.py", line 17, in showIndex
+    return render(request, 'index.html')
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\template\defaulttags.py", line 443, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\urls\base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\urls\resolvers.py", line 677, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'file_upload' not found. 'file_upload' is not a valid view function or pattern name.
+ERROR 2020-06-20 16:49:57,797 basehttp 157 "GET / HTTP/1.1" 500 126517
+ERROR 2020-06-20 16:49:59,084 log 228 Internal Server Error: /
+Traceback (most recent call last):
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\Learning\python\pictureAnnotation\pictureAnnotationSystem\views.py", line 17, in showIndex
+    return render(request, 'index.html')
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\template\defaulttags.py", line 443, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\urls\base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\urls\resolvers.py", line 677, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'file_upload' not found. 'file_upload' is not a valid view function or pattern name.
+ERROR 2020-06-20 16:49:59,087 basehttp 157 "GET / HTTP/1.1" 500 126517
+INFO 2020-06-20 16:50:21,682 basehttp 157 "GET / HTTP/1.1" 200 11592
+INFO 2020-06-20 16:50:21,791 basehttp 157 "GET /static/js/AILabel.pkg.min.js HTTP/1.1" 304 0
+INFO 2020-06-20 16:50:21,791 basehttp 157 "GET /static/js/csrf.js HTTP/1.1" 200 2989
+INFO 2020-06-20 16:50:21,816 basehttp 157 "GET /static/js/jquery-3.5.1.min.js HTTP/1.1" 200 89476
+WARNING 2020-06-20 16:50:22,009 log 228 Not Found: /public/gdbox/demo/imgs/marker.png
+WARNING 2020-06-20 16:50:22,010 basehttp 157 "GET /public/gdbox/demo/imgs/marker.png HTTP/1.1" 404 2368
+INFO 2020-06-20 16:52:54,117 basehttp 157 "GET / HTTP/1.1" 200 11621
+INFO 2020-06-20 16:52:54,231 basehttp 157 "GET /static/js/csrf.js HTTP/1.1" 304 0
+WARNING 2020-06-20 16:52:54,571 log 228 Not Found: /public/gdbox/demo/imgs/marker.png
+WARNING 2020-06-20 16:52:54,577 basehttp 157 "GET /public/gdbox/demo/imgs/marker.png HTTP/1.1" 404 2368
+INFO 2020-06-20 16:54:26,210 basehttp 157 "GET / HTTP/1.1" 200 11640
+INFO 2020-06-20 16:56:04,521 basehttp 157 "GET / HTTP/1.1" 200 11661
+INFO 2020-06-20 16:56:04,583 basehttp 157 "GET /static/js/csrf.js HTTP/1.1" 304 0
+WARNING 2020-06-20 16:56:08,872 log 228 Not Found: /127.0.0.1/file_upload
+WARNING 2020-06-20 16:56:08,878 basehttp 157 "POST /127.0.0.1/file_upload HTTP/1.1" 404 2333
+ERROR 2020-06-20 16:56:53,458 log 228 Internal Server Error: /
+Traceback (most recent call last):
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\Learning\python\pictureAnnotation\pictureAnnotationSystem\views.py", line 17, in showIndex
+    return render(request, 'index.html')
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\template\defaulttags.py", line 443, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\urls\base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\urls\resolvers.py", line 677, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'file_upload' not found. 'file_upload' is not a valid view function or pattern name.
+ERROR 2020-06-20 16:56:53,460 basehttp 157 "GET / HTTP/1.1" 500 126432
+INFO 2020-06-20 16:57:06,240 basehttp 157 "GET / HTTP/1.1" 200 11651
+ERROR 2020-06-20 16:57:10,721 log 228 Internal Server Error: /file_upload
+Traceback (most recent call last):
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\utils\deprecation.py", line 93, in __call__
+    response = self.process_request(request)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\middleware\common.py", line 54, in process_request
+    path = self.get_full_path_with_slash(request)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\middleware\common.py", line 94, in get_full_path_with_slash
+    'url': request.get_host() + new_path,
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to 127.0.0.1:8000/file_upload/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+ERROR 2020-06-20 16:57:10,723 basehttp 157 "POST /file_upload HTTP/1.1" 500 19547
+INFO 2020-06-20 16:58:56,568 basehttp 157 "GET / HTTP/1.1" 200 11652
+INFO 2020-06-20 16:58:56,634 basehttp 157 "GET /static/js/csrf.js HTTP/1.1" 304 0
+INFO 2020-06-20 16:59:01,390 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 108
+INFO 2020-06-20 16:59:29,442 basehttp 157 "GET / HTTP/1.1" 200 11654
+INFO 2020-06-20 16:59:32,900 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 108
+INFO 2020-06-20 17:00:29,904 basehttp 157 "GET / HTTP/1.1" 200 11470
+INFO 2020-06-20 17:00:33,654 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 107
+INFO 2020-06-20 17:02:01,595 autoreload 222 E:\Learning\python\pictureAnnotation\pictureAnnotationSystem\views.py changed, reloading.
+INFO 2020-06-20 17:02:02,874 autoreload 598 Watching for file changes with StatReloader
+INFO 2020-06-20 17:06:09,143 autoreload 598 Watching for file changes with StatReloader
+INFO 2020-06-20 17:06:11,902 basehttp 157 "GET / HTTP/1.1" 200 11470
+INFO 2020-06-20 17:06:12,036 basehttp 157 "GET /static/js/csrf.js HTTP/1.1" 304 0
+INFO 2020-06-20 17:06:16,306 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 109
+INFO 2020-06-20 17:06:35,678 basehttp 157 "GET / HTTP/1.1" 200 11469
+INFO 2020-06-20 17:06:38,996 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 108
+INFO 2020-06-20 17:09:12,313 autoreload 222 E:\Learning\python\pictureAnnotation\pictureAnnotationSystem\views.py changed, reloading.
+INFO 2020-06-20 17:09:13,420 autoreload 598 Watching for file changes with StatReloader
+INFO 2020-06-20 17:09:51,085 autoreload 222 E:\Learning\python\pictureAnnotation\pictureAnnotationSystem\views.py changed, reloading.
+INFO 2020-06-20 17:09:52,358 autoreload 598 Watching for file changes with StatReloader
+INFO 2020-06-20 17:09:54,834 basehttp 157 "GET / HTTP/1.1" 200 11469
+INFO 2020-06-20 17:09:54,943 basehttp 157 "GET /static/js/csrf.js HTTP/1.1" 304 0
+INFO 2020-06-20 17:09:57,967 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 108
+INFO 2020-06-20 17:10:17,322 autoreload 222 E:\Learning\python\pictureAnnotation\pictureAnnotationSystem\views.py changed, reloading.
+INFO 2020-06-20 17:10:18,681 autoreload 598 Watching for file changes with StatReloader
+INFO 2020-06-20 17:10:20,140 autoreload 222 E:\Learning\python\pictureAnnotation\pictureAnnotationSystem\views.py changed, reloading.
+INFO 2020-06-20 17:10:21,707 autoreload 598 Watching for file changes with StatReloader
+INFO 2020-06-20 17:10:22,384 basehttp 157 "GET / HTTP/1.1" 200 11469
+INFO 2020-06-20 17:10:30,623 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 109
+INFO 2020-06-20 17:11:54,268 autoreload 222 E:\Learning\python\pictureAnnotation\pictureAnnotationSystem\views.py changed, reloading.
+INFO 2020-06-20 17:11:56,630 autoreload 598 Watching for file changes with StatReloader
+INFO 2020-06-20 17:14:41,494 basehttp 157 "GET / HTTP/1.1" 200 11409
+INFO 2020-06-20 17:14:41,597 basehttp 157 "GET /static/js/csrf.js HTTP/1.1" 304 0
+INFO 2020-06-20 17:14:46,325 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 82
+INFO 2020-06-20 17:15:05,922 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 109
+INFO 2020-06-20 17:15:51,459 basehttp 157 "GET / HTTP/1.1" 200 11441
+INFO 2020-06-20 17:15:55,417 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 109
+INFO 2020-06-20 17:18:02,381 autoreload 222 E:\Learning\python\pictureAnnotation\pictureAnnotationSystem\views.py changed, reloading.
+INFO 2020-06-20 17:18:03,640 autoreload 598 Watching for file changes with StatReloader
+INFO 2020-06-20 17:18:06,173 basehttp 157 "GET / HTTP/1.1" 200 11441
+ERROR 2020-06-20 17:18:09,560 log 228 Internal Server Error: /file_upload/
+Traceback (most recent call last):
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\Learning\python\pictureAnnotation\pictureAnnotationSystem\views.py", line 51, in file_upload
+    respMsg = json.dump(msg)
+TypeError: dump() missing 1 required positional argument: 'fp'
+ERROR 2020-06-20 17:18:09,563 basehttp 157 "POST /file_upload/ HTTP/1.1" 500 19281
+INFO 2020-06-20 17:18:57,718 autoreload 222 E:\Learning\python\pictureAnnotation\pictureAnnotationSystem\views.py changed, reloading.
+INFO 2020-06-20 17:18:59,424 autoreload 598 Watching for file changes with StatReloader
+INFO 2020-06-20 17:19:00,241 basehttp 157 "GET / HTTP/1.1" 200 11441
+INFO 2020-06-20 17:19:00,400 basehttp 157 "GET /static/js/csrf.js HTTP/1.1" 304 0
+INFO 2020-06-20 17:19:03,722 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 151
+WARNING 2020-06-20 17:19:06,791 log 228 Not Found: /images/15926447437201123_新冠肺炎各国新增患者实时数据.png
+WARNING 2020-06-20 17:19:06,800 basehttp 157 "GET /images/15926447437201123_%E6%96%B0%E5%86%A0%E8%82%BA%E7%82%8E%E5%90%84%E5%9B%BD%E6%96%B0%E5%A2%9E%E6%82%A3%E8%80%85%E5%AE%9E%E6%97%B6%E6%95%B0%E6%8D%AE.png HTTP/1.1" 404 2566
+INFO 2020-06-20 17:19:24,708 autoreload 222 E:\Learning\python\pictureAnnotation\pictureAnnotationSystem\views.py changed, reloading.
+INFO 2020-06-20 17:19:26,144 autoreload 598 Watching for file changes with StatReloader
+INFO 2020-06-20 17:19:32,058 basehttp 157 "GET / HTTP/1.1" 200 11441
+INFO 2020-06-20 17:19:35,027 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 158
+INFO 2020-06-20 17:19:36,324 basehttp 157 "GET /static/images/15926447750254946_%E6%96%B0%E5%86%A0%E8%82%BA%E7%82%8E%E5%90%84%E5%9B%BD%E6%96%B0%E5%A2%9E%E6%82%A3%E8%80%85%E5%AE%9E%E6%97%B6%E6%95%B0%E6%8D%AE.png HTTP/1.1" 200 296291
+INFO 2020-06-20 17:22:32,562 basehttp 157 "GET / HTTP/1.1" 200 11763
+INFO 2020-06-20 17:22:36,933 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 158
+INFO 2020-06-20 17:22:36,962 basehttp 157 "GET /static/images/15926449569310281_%E6%96%B0%E5%86%A0%E8%82%BA%E7%82%8E%E5%90%84%E5%9B%BD%E6%96%B0%E5%A2%9E%E6%82%A3%E8%80%85%E5%AE%9E%E6%97%B6%E6%95%B0%E6%8D%AE.png HTTP/1.1" 200 296291
+INFO 2020-06-20 17:22:44,860 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 104
+INFO 2020-06-20 17:23:56,566 basehttp 157 "GET / HTTP/1.1" 200 11777
+INFO 2020-06-20 17:23:56,790 basehttp 157 "GET /static/js/csrf.js HTTP/1.1" 304 0
+INFO 2020-06-20 17:24:43,314 basehttp 157 "GET / HTTP/1.1" 200 11777
+INFO 2020-06-20 17:24:47,220 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 158
+INFO 2020-06-20 17:24:47,241 basehttp 157 "GET /static/images/15926450872180245_%E6%96%B0%E5%86%A0%E8%82%BA%E7%82%8E%E5%90%84%E5%9B%BD%E6%96%B0%E5%A2%9E%E6%82%A3%E8%80%85%E5%AE%9E%E6%97%B6%E6%95%B0%E6%8D%AE.png HTTP/1.1" 200 296291
+INFO 2020-06-20 17:24:52,101 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 104
+INFO 2020-06-20 17:25:36,026 basehttp 157 "GET / HTTP/1.1" 200 11777
+INFO 2020-06-20 17:25:39,845 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 104
+INFO 2020-06-20 17:26:03,338 basehttp 157 "GET / HTTP/1.1" 200 11772
+INFO 2020-06-20 17:26:06,815 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 104
+INFO 2020-06-20 17:26:06,835 basehttp 157 "GET /static/images/15926451668137493_%E4%BA%91%E7%AD%94%E8%BE%A9%E7%95%99%E5%BF%B5.jpg HTTP/1.1" 200 289635
+INFO 2020-06-20 17:26:10,620 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 158
+INFO 2020-06-20 17:26:37,493 basehttp 157 "GET / HTTP/1.1" 200 11772
+INFO 2020-06-20 17:26:40,677 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 158
+INFO 2020-06-20 17:26:40,703 basehttp 157 "GET /static/images/15926452006759222_%E6%96%B0%E5%86%A0%E8%82%BA%E7%82%8E%E5%90%84%E5%9B%BD%E6%96%B0%E5%A2%9E%E6%82%A3%E8%80%85%E5%AE%9E%E6%97%B6%E6%95%B0%E6%8D%AE.png HTTP/1.1" 200 296291
+INFO 2020-06-20 17:26:44,730 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 104
+INFO 2020-06-20 17:28:39,292 basehttp 157 "GET / HTTP/1.1" 200 11817
+ERROR 2020-06-20 17:28:39,520 log 228 Internal Server Error: /file_upload/
+Traceback (most recent call last):
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\Learning\python\pictureAnnotation\pictureAnnotationSystem\views.py", line 31, in file_upload
+    img_type = file_obj.name.split('.')[1]
+AttributeError: 'NoneType' object has no attribute 'name'
+ERROR 2020-06-20 17:28:39,553 basehttp 157 "POST /file_upload/ HTTP/1.1" 500 19212
+ERROR 2020-06-20 17:28:39,573 basehttp 157 "POST /file_upload/ HTTP/1.1" 500 59
+INFO 2020-06-20 17:28:41,057 basehttp 157 "GET / HTTP/1.1" 200 11817
+INFO 2020-06-20 17:28:49,822 basehttp 157 "GET / HTTP/1.1" 200 11811
+INFO 2020-06-20 17:29:57,609 basehttp 157 "GET / HTTP/1.1" 200 11823
+INFO 2020-06-20 17:29:57,757 basehttp 157 "GET /static/js/csrf.js HTTP/1.1" 304 0
+INFO 2020-06-20 17:30:01,898 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 104
+INFO 2020-06-20 17:30:01,924 basehttp 157 "GET /static/images/15926454018923905_%E4%BA%91%E7%AD%94%E8%BE%A9%E7%95%99%E5%BF%B5.jpg HTTP/1.1" 200 289635
+INFO 2020-06-20 17:30:04,516 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 158
+INFO 2020-06-20 17:30:04,541 basehttp 157 "GET /static/images/15926454045140777_%E6%96%B0%E5%86%A0%E8%82%BA%E7%82%8E%E5%90%84%E5%9B%BD%E6%96%B0%E5%A2%9E%E6%82%A3%E8%80%85%E5%AE%9E%E6%97%B6%E6%95%B0%E6%8D%AE.png HTTP/1.1" 200 296291
+INFO 2020-06-20 17:30:09,641 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 104
+INFO 2020-06-20 17:30:09,669 basehttp 157 "GET /static/images/15926454096396801_%E4%BA%91%E7%AD%94%E8%BE%A9%E7%95%99%E5%BF%B5.jpg HTTP/1.1" 200 289635
+INFO 2020-06-20 17:33:51,912 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 158
+INFO 2020-06-20 17:33:51,938 basehttp 157 "GET /static/images/15926456319109807_%E6%96%B0%E5%86%A0%E8%82%BA%E7%82%8E%E5%90%84%E5%9B%BD%E6%96%B0%E5%A2%9E%E6%82%A3%E8%80%85%E5%AE%9E%E6%97%B6%E6%95%B0%E6%8D%AE.png HTTP/1.1" 200 296291
+INFO 2020-06-20 17:34:17,522 basehttp 157 "GET / HTTP/1.1" 200 11823
+INFO 2020-06-20 17:35:45,415 basehttp 157 "GET / HTTP/1.1" 200 11815
+INFO 2020-06-20 17:35:45,628 basehttp 157 "GET /static/js/csrf.js HTTP/1.1" 304 0
+INFO 2020-06-20 17:35:50,540 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 158
+INFO 2020-06-20 17:35:50,561 basehttp 157 "GET /static/images/15926457505388842_%E6%96%B0%E5%86%A0%E8%82%BA%E7%82%8E%E5%90%84%E5%9B%BD%E6%96%B0%E5%A2%9E%E6%82%A3%E8%80%85%E5%AE%9E%E6%97%B6%E6%95%B0%E6%8D%AE.png HTTP/1.1" 200 296291
+ERROR 2020-06-20 17:35:56,632 log 228 Internal Server Error: /file_upload/
+Traceback (most recent call last):
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\Learning\python\pictureAnnotation\venv\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "E:\Learning\python\pictureAnnotation\pictureAnnotationSystem\views.py", line 31, in file_upload
+    img_type = file_obj.name.split('.')[1]
+AttributeError: 'NoneType' object has no attribute 'name'
+ERROR 2020-06-20 17:35:56,634 basehttp 157 "POST /file_upload/ HTTP/1.1" 500 19212
+INFO 2020-06-20 17:36:03,417 basehttp 157 "GET / HTTP/1.1" 200 11806
+INFO 2020-06-20 17:36:06,620 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 158
+INFO 2020-06-20 17:36:27,466 basehttp 157 "GET / HTTP/1.1" 200 11805
+INFO 2020-06-20 17:36:31,187 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 158
+INFO 2020-06-20 17:36:36,590 basehttp 157 "GET / HTTP/1.1" 200 11806
+INFO 2020-06-20 17:36:39,754 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 158
+INFO 2020-06-20 17:36:39,788 basehttp 157 "GET /static/images/15926457997536292_%E6%96%B0%E5%86%A0%E8%82%BA%E7%82%8E%E5%90%84%E5%9B%BD%E6%96%B0%E5%A2%9E%E6%82%A3%E8%80%85%E5%AE%9E%E6%97%B6%E6%95%B0%E6%8D%AE.png HTTP/1.1" 200 296291
+INFO 2020-06-20 17:37:02,216 basehttp 157 "GET / HTTP/1.1" 200 11798
+INFO 2020-06-20 17:37:05,183 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 158
+INFO 2020-06-20 17:39:05,679 basehttp 157 "GET / HTTP/1.1" 200 11853
+INFO 2020-06-20 17:39:09,755 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 158
+INFO 2020-06-20 17:40:25,428 basehttp 157 "GET / HTTP/1.1" 200 11923
+INFO 2020-06-20 17:40:28,425 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 157
+INFO 2020-06-20 17:41:39,785 basehttp 157 "GET / HTTP/1.1" 200 11936
+INFO 2020-06-20 17:41:43,826 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 157
+INFO 2020-06-20 17:42:04,758 basehttp 157 "GET / HTTP/1.1" 200 11937
+INFO 2020-06-20 17:42:07,890 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 158
+INFO 2020-06-20 17:42:25,988 basehttp 157 "GET / HTTP/1.1" 200 11981
+INFO 2020-06-20 17:42:26,102 basehttp 157 "GET /static/js/csrf.js HTTP/1.1" 304 0
+INFO 2020-06-20 17:42:29,212 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 157
+INFO 2020-06-20 17:46:01,016 basehttp 157 "GET / HTTP/1.1" 200 11883
+INFO 2020-06-20 17:46:04,979 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 158
+INFO 2020-06-20 17:48:09,957 basehttp 157 "GET / HTTP/1.1" 200 11931
+INFO 2020-06-20 17:48:13,517 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 158
+INFO 2020-06-20 17:52:12,790 basehttp 157 "GET / HTTP/1.1" 200 11960
+INFO 2020-06-20 17:52:12,945 basehttp 157 "GET /static/js/csrf.js HTTP/1.1" 304 0
+INFO 2020-06-20 17:52:17,356 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 158
+INFO 2020-06-20 17:52:42,978 basehttp 157 "GET / HTTP/1.1" 200 11965
+INFO 2020-06-20 17:52:46,449 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 158
+INFO 2020-06-20 17:52:46,481 basehttp 157 "GET /static/images/15926467664479606_%E6%96%B0%E5%86%A0%E8%82%BA%E7%82%8E%E5%90%84%E5%9B%BD%E6%96%B0%E5%A2%9E%E6%82%A3%E8%80%85%E5%AE%9E%E6%97%B6%E6%95%B0%E6%8D%AE.png HTTP/1.1" 200 296291
+INFO 2020-06-20 17:52:58,490 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 104
+INFO 2020-06-20 17:52:58,512 basehttp 157 "GET /static/images/15926467784898407_%E4%BA%91%E7%AD%94%E8%BE%A9%E7%95%99%E5%BF%B5.jpg HTTP/1.1" 200 289635
+INFO 2020-06-20 17:55:17,431 autoreload 222 E:\Learning\python\pictureAnnotation\pictureAnnotationSystem\views.py changed, reloading.
+INFO 2020-06-20 17:55:18,939 autoreload 598 Watching for file changes with StatReloader
+INFO 2020-06-20 17:57:12,038 autoreload 598 Watching for file changes with StatReloader
+INFO 2020-06-20 17:57:13,775 basehttp 157 "GET / HTTP/1.1" 200 11965
+INFO 2020-06-20 17:57:17,993 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 104
+INFO 2020-06-20 17:57:18,016 basehttp 157 "GET /static/images/15926470379266548_%E4%BA%91%E7%AD%94%E8%BE%A9%E7%95%99%E5%BF%B5.jpg HTTP/1.1" 200 289635
+INFO 2020-06-20 17:57:34,532 autoreload 222 E:\Learning\python\pictureAnnotation\pictureAnnotationSystem\views.py changed, reloading.
+INFO 2020-06-20 17:57:34,537 basehttp 157 "GET / HTTP/1.1" 200 11965
+INFO 2020-06-20 17:57:35,948 autoreload 598 Watching for file changes with StatReloader
+INFO 2020-06-20 17:57:38,286 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 104
+INFO 2020-06-20 17:57:38,300 basehttp 157 "GET /static/images/15926470582662983_%E4%BA%91%E7%AD%94%E8%BE%A9%E7%95%99%E5%BF%B5.jpg HTTP/1.1" 200 289635
+INFO 2020-06-20 17:58:52,330 autoreload 222 E:\Learning\python\pictureAnnotation\pictureAnnotationSystem\views.py changed, reloading.
+INFO 2020-06-20 17:58:54,009 autoreload 598 Watching for file changes with StatReloader
+INFO 2020-06-20 17:58:54,732 basehttp 157 "GET / HTTP/1.1" 200 11965
+INFO 2020-06-20 17:58:58,917 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 104
+INFO 2020-06-20 17:58:58,954 basehttp 157 "GET /static/images/15926471388566427_%E4%BA%91%E7%AD%94%E8%BE%A9%E7%95%99%E5%BF%B5.jpg HTTP/1.1" 200 289635
+INFO 2020-06-20 18:02:37,398 autoreload 222 E:\Learning\python\pictureAnnotation\pictureAnnotationSystem\views.py changed, reloading.
+INFO 2020-06-20 18:02:39,100 autoreload 598 Watching for file changes with StatReloader
+INFO 2020-06-20 18:02:39,591 basehttp 157 "GET / HTTP/1.1" 200 12006
+INFO 2020-06-20 18:02:39,767 basehttp 157 "GET /static/js/csrf.js HTTP/1.1" 304 0
+INFO 2020-06-20 18:02:44,992 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 187
+INFO 2020-06-20 18:02:45,008 basehttp 157 "GET /static/images/15926473649601438_%E6%96%B0%E5%86%A0%E8%82%BA%E7%82%8E%E5%90%84%E5%9B%BD%E6%96%B0%E5%A2%9E%E6%82%A3%E8%80%85%E5%AE%9E%E6%97%B6%E6%95%B0%E6%8D%AE.png HTTP/1.1" 200 296291
+INFO 2020-06-20 18:03:07,481 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 132
+INFO 2020-06-20 18:03:07,506 basehttp 157 "GET /static/images/15926473874771411_%E4%BA%91%E7%AD%94%E8%BE%A9%E7%95%99%E5%BF%B5.jpg HTTP/1.1" 200 289635
+INFO 2020-06-20 18:03:25,374 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 116
+INFO 2020-06-20 18:03:25,402 basehttp 157 "GET /static/images/15926474053704617_xyzs%20rz1_0011.jpg HTTP/1.1" 200 945698
+INFO 2020-06-20 18:06:10,736 basehttp 157 "GET / HTTP/1.1" 200 12107
+INFO 2020-06-20 18:06:15,936 basehttp 157 "POST /file_upload/ HTTP/1.1" 200 131
+INFO 2020-06-20 18:06:17,507 basehttp 157 "GET /static/images/1592647575931254_%E4%BA%91%E7%AD%94%E8%BE%A9%E7%95%99%E5%BF%B5.jpg HTTP/1.1" 200 289635
+INFO 2020-06-20 18:07:30,102 basehttp 157 "GET / HTTP/1.1" 200 12106
+INFO 2020-06-20 18:07:40,369 basehttp 157 "GET / HTTP/1.1" 200 12106
+INFO 2020-06-20 18:07:40,543 basehttp 157 "GET /static/js/csrf.js HTTP/1.1" 304 0
+INFO 2020-06-20 18:13:58,361 basehttp 157 "GET / HTTP/1.1" 200 12126
+INFO 2020-06-20 18:14:08,289 basehttp 157 "GET / HTTP/1.1" 200 12140
+INFO 2020-06-20 18:14:17,543 basehttp 157 "GET / HTTP/1.1" 200 12140
+INFO 2020-06-20 18:14:23,410 basehttp 157 "GET / HTTP/1.1" 200 12140
+INFO 2020-06-20 18:15:00,046 autoreload 222 E:\Learning\python\pictureAnnotation\pictureAnnotationSystem\views.py changed, reloading.
+INFO 2020-06-20 18:15:01,250 autoreload 598 Watching for file changes with StatReloader

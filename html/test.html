@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+	<script src="../static/js/AILabel.pkg.min.js"></script>
+{#     // 样式声明#}
+    <style>
+        #hello-map {
+            width: 500px;         // 必须
+            height: 400px;        // 必须
+            position: relative;   // 必须
+            border: 1px solid red;
+            cursor: pointer;
+        }
+    </style>
+
+
+</head>
+<body>
+    {#     容器声明#}
+    <div id="hello-map"></div>
+
+    <script type="text/javascript">
+    // js声明-容器声明（参数：zoom: 缩放比; {cx: cy:}：初始中心点位置；zoomMax、zoomMin：缩放的比例限制）
+    const gMap = new AILabel.Map('hello-map', {zoom: 1080, cx: 0, cy: 0, zoomMax: 650 * 10, zoomMin: 650 / 10, autoPan: true, drawZoom: true});
+
+    gMap.events.on('mouseMove', wqeqweqwe => {console.log('xy');});
+
+    // 图片层实例\添加
+    const gImageLayer = new AILabel.Layer.Image('img', '../static/images/demo.png', {w: 1080, h: 720}, {zIndex: 1,grid: {rowCount: 6, columnCount: 6, color: '#DC143C'}});
+    gMap.addLayer(gImageLayer);
+
+    // 矢量数据层
+    const featureLayer = new AILabel.Layer.Feature('featureLayer');
+    gMap.addLayer(featureLayer);
+    //style实例化
+    const feature_style = new AILabel.Style({});
+    //要素数据
+    const feature = new AILabel.Feature.Polygon('feature', [{x:100, y:100}, {x:100, y:200}, {x:200, y:100}, {x:200, y:200}], {name: 'China'}, feature_style); // 参考AILabel.Feature.Polygon【此处不再赘述】
+    featureLayer.addFeature(feature);
+    feature.show();
+
+    const textLayer = new AILabel.Layer.Text("text");
+    gMap.addLayer(textLayer);
+    const text666 = new AILabel.Text("texttext", {text: "哈哈哈", pos: {x:100,y:100}}, feature_style); // 参考AILabel.Text【此处不做赘述】
+    // 添加text对象
+    textLayer.addText(text666);
+
+    //***至此、已完成首个简单的hello-map的使用***
+    </script>
+</body>
+</html>

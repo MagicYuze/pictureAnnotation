@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <title>Document</title>
+	<script src='../static/js/AILabel.pkg.min.js'></script>
+	<script src='../static/js/jquery-3.5.1.min.js'></script>
+	<script src='../static/js/csrf.js'></script>
+
+	<style>
+        #map {
+        	width: 100%;
+        	height: 500px;
+        	border: 1px solid darkblue;
+        	position: relative;
+        	cursor: crosshair;
+            -moz-user-select:none;/*火狐*/
+            -webkit-user-select:none;/*webkit浏览器*/
+            -ms-user-select:none;/*IE10*/
+            -khtml-user-select:none;/*早期浏览器*/
+            user-select:none;
+        }
+        .command-btn {
+            display: inline-block;
+            margin: 0 20px;
+            margin-top: 10px;
+            font-size: 13px;
+            padding: 5px 10px;
+            border: 1px solid #aaa;
+        }
+	</style>
+    <script type="text/javascript">
+        $.ajaxSetup({
+            data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+        });
+
+        let gImageLayer = null;
+
+        let map_width = $('#map').width();
+        let map_height = $('#map').height();
+        // 该事件用来监听文件上传控件是否选择好指定文件
+        function setPicUrl() {
+            //获取文件选择控件选择的图片对象
+            //let file_c = document.getElementById('file');
+            let file_c = $('#pic').get(0);
+            // files是input[type=file]的属性， 用来存储文件选择控件选择的图片对象， 是一个数组类型
+            let file_obj = file_c.files[0];
+            // 将文件类型的数据打包成form表单数据
+            let formD = new FormData();
+            formD.append('file',file_obj);
+            //alert(file_obj);
+            $.ajax({
+                // 先上传图片到服务器
+                url:'file_upload/',
+                type:'post',
+                data:formD,
+                // 数据传输过程中不需要将数据转换成字符串
+                processData:false,
+                // ajax传输数据过程中不需要重新设置数据的编码格式
+                contentType:false,
+                success:function (res) {
+                    //alert(res);
+                    let msg = JSON.parse(res);
+                    let code = msg.code;
+                    if(code == 200){
+                        let new_url = msg.url;
+                        let width = msg.width;
+                        let height = msg.height;
+                        if (typeof(map_width) == 'undefined') {
+                           map_width = $('#map').width();
+                        }
+                        if(width > map_width){
+                            height = height * (map_width/width);
+                            width = map_width;
+                        }
+                        $('#map').height(height);
+
+                        if(gImageLayer != null)
+                            gMap.removeLayer(gImageLayer);
+                        gImageLayer = new AILabel.Layer.Image('img', new_url, {w: width, h: height}, {
+                            zIndex: 1,
+                            //grid: {rowCount: 3, columnCount: 3}
+                        });
+                        gMap.resize(width,height);
+                        gMap.addLayer(gImageLayer);
+                    }else{
+                        alert("抱歉，该图片上传时出错，请重新上传");
+                    }
+
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+	<div id="map" style="width: 80%; margin: auto;"></div>
+    <input id="pic" class="command-btn" type="file"  accept="image/png, image/jpeg, image/json" onchange="setPicUrl()"/>
+
+    <div id="drawRect" class="command-btn" onclick="setMode('drawRect')">绘制矩形</div>
+    <div id="drawPolygon" class="command-btn" onclick="setMode('drawPolygon')">绘制多边形</div>
+    <div id="drawMask" class="command-btn" style="background-color: #3377ff;" onclick="setMode('drawMask', '#FF0000', 10)">掩膜:红色:10</div>
+    <div id="drawMask2" class="command-btn" onclick="setMode('drawMask2', '#0000FF', 20)">掩膜:蓝色:20</div>
+    <div id="drawMask3" class="command-btn" onclick="setMode('drawMask3', '#9370DB', 30)">掩膜:紫色:30</div>
+    <div id="clearMask" class="command-btn" onclick="setMode('clearMask')">掩膜:擦除</div>
+    <div id="drawPoint" class="command-btn" onclick="setMode('drawPoint')">绘制点</div>
+    <div id="drawPolyline" class="command-btn" onclick="setMode('drawPolyline', '#0000FF', 10)">绘制多段线:蓝色:10</div>
+    <div id="drawPolyline2" class="command-btn" onclick="setMode('drawPolyline2', '#9370DB', 20)">绘制多段线:紫色:20</div>
+    <div id="pan" class="command-btn" onclick="setMode('pan')">平移</div>
+    <script>
+        let picUrl = '';
+        const mappingStyles = {
+            drawRect: {
+                drawStyle: {strokeColor: '#FF0000', opacity: 1, lineWeight: 1},
+                featureStyle: {strokeColor: '#FF0000', fillColor: '#0000FF', opacity: .3, lineWeight: 1}
+            },
+            drawPolygon: {
+                drawStyle: {strokeColor: '#00FF00', opacity: 1, lineWeight: 1},
+                featureStyle: {strokeColor: '#FF0000', fillColor: '#00FF00', opacity: .3, lineWeight: 1}
+            },
+            drawMask: {
+                drawStyle: {strokeColor: '#FF0000', fillColor: '#0000FF', opacity: 1, lineWeight: 1},
+                featureStyle: {}
+            },
+            clearMask: {
+                drawStyle: {lineWeight: 20},
+                featureStyle: {}
+            },
+            drawPoint: {
+                drawStyle: {pointRadius: 5},
+                featureStyle: {strokeColor: '#0000FF', fillColor: '#8B008B', opacity: 1, pointRadius: 5}
+            },
+            drawPolyline: {
+                drawStyle: {strokeColor: '#FF0000', fillColor: '#0000FF', opacity: 1, lineWeight: 10},
+                featureStyle: {strokeColor: '#0000FF', fillColor: '#FF0000', opacity: 1, lineWeight: 10}
+            },
+            pan: {
+                drawStyle: {},
+                featureStyle: {}
+            }
+        };
+        // 设置当前操作模式为‘drawRect’
+        function setMode(mode, color, size) {
+            const preCurrentMode = mode.indexOf('drawMask') === 0 ? 'drawMask' : mode;
+            const currentMode = preCurrentMode.indexOf('drawPolyline') === 0 ? 'drawPolyline' : preCurrentMode;
+            const drawStyle = mappingStyles[currentMode].drawStyle;
+            if (color) {
+                if (currentMode === 'drawPolyline') {
+                    drawStyle.strokeColor = color;
+                }
+                else {
+                    drawStyle.fillColor = color;
+                }
+            }
+            if (size) {
+                drawStyle.lineWeight = size;
+            }
+
+            gMap && gMap.setMode(currentMode, new AILabel.Style(drawStyle));
+
+            document.getElementById('drawRect').style.backgroundColor = '#fff';
+            document.getElementById('drawPolygon').style.backgroundColor = '#fff';
+            document.getElementById('drawMask').style.backgroundColor = '#fff';
+            document.getElementById('drawMask2').style.backgroundColor = '#fff';
+            document.getElementById('drawMask3').style.backgroundColor = '#fff';
+            document.getElementById('drawMask3').style.backgroundColor = '#fff';
+            document.getElementById('clearMask').style.backgroundColor = '#fff';
+            document.getElementById('drawPoint').style.backgroundColor = '#fff';
+            document.getElementById('drawPolyline').style.backgroundColor = '#fff';
+            document.getElementById('drawPolyline2').style.backgroundColor = '#fff';
+            document.getElementById('pan').style.backgroundColor = '#fff';
+
+            document.getElementById(mode).style.backgroundColor = '#3377ff';
+        }
+
+        // 容器对象声明
+        let gMap = new AILabel.Map('map', {zoom: map_height, cx: 0, cy: 0, zoomMax: map_height*10, zoomMin: map_height/10, autoPan: true, drawZoom: true});
+
+        setMode('drawRect');
+        gMap.setMaskBounds(-540, 540, -360, 360); // 设置涂抹区域
+
+        // 图片层实例\添加
+        //gImageLayer = new AILabel.Layer.Image('img', picUrl, {w: 1080, h: 720}, {zIndex: 1, grid: {rowCount: 3, columnCount: 3}});
+        //gMap.addLayer(gImageLayer);
+
+        // 矢量层实例\添加
+        let gFeatureLayer = new AILabel.Layer.Feature('featureLayer', {zIndex: 3, transparent: false});
+        gMap.addLayer(gFeatureLayer);
+
+        // 掩膜层实例\添加
+        let gMaskLayer = new AILabel.Layer.Mask('maskLayer', {zIndex: 2});
+        gMap.addLayer(gMaskLayer);
+        // 生成元素唯一标志（时间戳）
+        const timestamp = new Date().getTime();
+        gMap.events.on('geometryDrawDone', function (type, points, options) {
+            const cMode = gMap.getMode();
+            console.log('--points--', points, options);
+            const featureStyle = mappingStyles[cMode].featureStyle;
+            // 元素添加展示
+            if (type === 'point') {
+                const {radius = 5} = options || {};
+                let fea = new AILabel.Feature.Point(`feature-${timestamp}`, points, {
+                    name: '中国'
+                }, featureStyle);
+                gFeatureLayer.addFeature(fea);
+            }
+            if (type === 'rect') {
+                let fea = new AILabel.Feature.Rect(`feature-${timestamp}`, points, {
+                    name: '中国'
+                }, featureStyle);
+                gFeatureLayer.addFeature(fea);
+            }
+            else if (type === 'polygon') {
+                let fea = new AILabel.Feature.Polygon(`feature-${timestamp}`, points, {
+                    name: '中国'
+                }, featureStyle);
+                gFeatureLayer.addFeature(fea);
+            }
+            else if (type === 'polyline') {
+                const {width = 5} = options || {};
+                let fea = new AILabel.Feature.Polyline(`feature-${timestamp}`, points, {
+                    name: '中国'
+                }, featureStyle, {width});
+                gFeatureLayer.addFeature(fea);
+            }
+            else if (type === 'mask') {
+                gMaskLayer.addMasks(points);
+            }
+        });
+        gMap.events.on('featureHover', function (feature, evt, wxy) {
+            // console.log('feature, evt, wxy', feature, evt, wxy);
+        });
+
+        const gTextStyle = new AILabel.Style({fontColor: '#FF0000', fontSize: 20, strokeColor: '#0000FF', opacity: 0});
+
+        // 文本层实例\添加
+        let gTextLayer = new AILabel.Layer.Text('textLayer', {zIndex: 2});
+        gMap.addLayer(gTextLayer);
+
+        // 文本实例\添加
+        const text = new AILabel.Text('id', {
+            pos: {x: -50, y: 50},
+            offset: {x: 0, y: 0},
+            width: 200,
+            maxWidth: 300,
+            text: '我和我的祖国'
+        }, gTextStyle);
+        gTextLayer.addText(text);
+
+        // marker对象实例\添加
+        //const marker = new AILabel.Marker('name-中国', {
+            //src: '/public/gdbox/demo/imgs/marker.png',
+           // x: 0,
+           // y: 0,
+           // offset: {x: -32, y: -32},
+        //});
+        // 注册监听事件删除标注
+        //marker.regEvent('click', function () {
+       //     gMap.mLayer.removeMarker(this);
+       // });
+        //gMap.mLayer.addMarker(marker);
+
+        gMap.events.on('geometryEditDone', (type, activeFeature, points) => {
+            if (type === 'rect' || type === 'polygon' || type === 'polyline') {
+                activeFeature.update({points});
+                // activeFeature.show();
+            }
+            else if (type === 'mask') {
+                for (let i = 0, len = activeFeature.length; i < len; i++) {
+                    const {layerId, masks} = activeFeature[i];
+                    console.log('newmasks', masks);
+                    const maskLayer = gMap.getLayerById(layerId);
+                    maskLayer && maskLayer.addMasks(masks, true);
+                    console.log('maskLayer', maskLayer);
+                }
+            }
+        });
+        // 目前此事件钩子只针对point类型数据
+        gMap.events.on('geometryRemove', (type, removeFeature) => {
+            if (type === 'point') {
+                gFeatureLayer.removeFeatureById(removeFeature.id);
+            }
+        });
+    </script>
+</body>
+</html>
