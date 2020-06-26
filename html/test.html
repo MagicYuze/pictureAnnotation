@@ -1,55 +1,179 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title></title>
-	<link rel="stylesheet" href="">
-	<script src="../static/js/AILabel.pkg.min.js"></script>
-{#     // 样式声明#}
-    <style>
-        #hello-map {
-            width: 500px;         // 必须
-            height: 400px;        // 必须
-            position: relative;   // 必须
-            border: 1px solid red;
-            cursor: pointer;
-        }
-    </style>
-
-
-</head>
-<body>
-    {#     容器声明#}
-    <div id="hello-map"></div>
+	<meta charset="UTF-8">
+    <title>图片标注系统</title>
+    <link rel="stylesheet" href="../static/css/PictureAnnotation.css">
+    <link rel="stylesheet" href="../static/css/xcConfirm.css">
+	<script src='../static/js/AILabel.pkg.min.js'></script>
+	<script src='../static/js/jquery-3.5.1.min.js'></script>
+	<script src='../static/js/jquery.imageLabel.min.js'></script>
+	<script src='../static/js/PictureAnnotation.js'></script>
+	<script src='../static/js/xcConfirm.js'></script>
 
     <script type="text/javascript">
-    // js声明-容器声明（参数：zoom: 缩放比; {cx: cy:}：初始中心点位置；zoomMax、zoomMin：缩放的比例限制）
-    const gMap = new AILabel.Map('hello-map', {zoom: 1080, cx: 0, cy: 0, zoomMax: 650 * 10, zoomMin: 650 / 10, autoPan: true, drawZoom: true});
-
-    gMap.events.on('mouseMove', wqeqweqwe => {console.log('xy');});
-
-    // 图片层实例\添加
-    const gImageLayer = new AILabel.Layer.Image('img', '../static/images/demo.png', {w: 1080, h: 720}, {zIndex: 1,grid: {rowCount: 6, columnCount: 6, color: '#DC143C'}});
-    gMap.addLayer(gImageLayer);
-
-    // 矢量数据层
-    const featureLayer = new AILabel.Layer.Feature('featureLayer');
-    gMap.addLayer(featureLayer);
-    //style实例化
-    const feature_style = new AILabel.Style({});
-    //要素数据
-    const feature = new AILabel.Feature.Polygon('feature', [{x:100, y:100}, {x:100, y:200}, {x:200, y:100}, {x:200, y:200}], {name: 'China'}, feature_style); // 参考AILabel.Feature.Polygon【此处不再赘述】
-    featureLayer.addFeature(feature);
-    feature.show();
-
-    const textLayer = new AILabel.Layer.Text("text");
-    gMap.addLayer(textLayer);
-    const text666 = new AILabel.Text("texttext", {text: "哈哈哈", pos: {x:100,y:100}}, feature_style); // 参考AILabel.Text【此处不做赘述】
-    // 添加text对象
-    textLayer.addText(text666);
-
-    //***至此、已完成首个简单的hello-map的使用***
+        $.ajaxSetup({
+            data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+        });
+        let gImageLayer = null;
+        let map_width = $('#map').width();
+        let map_height = $('#map').height();
     </script>
+</head>
+<body>
+    <div id="map" style="width: 80%; margin: auto"></div>
+    <div id="tool" style="width: 80%;margin: auto;padding-bottom: 20px;">
+        <input id="pic" class="command-btn" type="file"  accept="image/png, image/jpeg, image/json" onchange="isConfirm(this)"/>
+        <div id="drawRect" class="command-btn" onclick="setMode('drawRect')">绘制矩形</div>
+        <div id="drawPolygon" class="command-btn" onclick="setMode('drawPolygon')">绘制多边形</div>
+    {#    <div id="drawMask" class="command-btn" style="background-color: #3377ff;" onclick="setMode('drawMask', '#FF0000', 10)">掩膜:红色:10</div>#}
+    {#    <div id="drawMask2" class="command-btn" onclick="setMode('drawMask2', '#0000FF', 20)">掩膜:蓝色:20</div>#}
+    {#    <div id="drawMask3" class="command-btn" onclick="setMode('drawMask3', '#9370DB', 30)">掩膜:紫色:30</div>#}
+    {#    <div id="clearMask" class="command-btn" onclick="setMode('clearMask')">掩膜:擦除</div>#}
+    {#    <div id="drawPoint" class="command-btn" onclick="setMode('drawPoint')">绘制点</div>#}
+    {#    <div id="drawPolyline" class="command-btn" onclick="setMode('drawPolyline', '#0000FF', 10)">绘制多段线:蓝色:10</div>#}
+    {#    <div id="drawPolyline2" class="command-btn" onclick="setMode('drawPolyline2', '#9370DB', 20)">绘制多段线:紫色:20</div>#}
+        <div id="pan" class="command-btn" onclick="setMode('pan')">平移</div>
+    </div>
+    <script>
+        // 容器对象声明
+        let gMap = new AILabel.Map('map', {zoom: map_height, cx: 0, cy: 0, zoomMax: map_height*10, zoomMin: map_height/10, autoPan: true, drawZoom: true});
+        // 设置当前操作模式为‘drawRect’
+        setMode('drawRect');
+        gMap.setMaskBounds(-540, 540, -360, 360); // 设置涂抹区域
+
+        // 图片层实例\添加
+        //gImageLayer = new AILabel.Layer.Image('img', picUrl, {w: 1080, h: 720}, {zIndex: 1, grid: {rowCount: 3, columnCount: 3}});
+        //gMap.addLayer(gImageLayer);
+
+        // 矢量层实例\添加
+        let gFeatureLayer = new AILabel.Layer.Feature('featureLayer', {zIndex: 3, transparent: false});
+        gMap.addLayer(gFeatureLayer);
+
+        // 掩膜层实例\添加
+        let gMaskLayer = new AILabel.Layer.Mask('maskLayer', {zIndex: 2});
+        gMap.addLayer(gMaskLayer);
+        // 生成元素唯一标志（时间戳）
+
+        gMap.events.on('geometryDrawDone', function (type, points, options) {
+            const cMode = gMap.getMode();
+            console.log('--points--', points, options);
+            window.wxc.xcConfirm("请输入标注信息：", window.wxc.xcConfirm.typeEnum.input,{
+						onOk:function(v){
+							console.log(v);
+						}
+					});
+            //console.log(points);
+            let polygon_centroid = get_polygon_centroid(points)
+            console.log(polygon_centroid);
+            console.log(polygon_centroid.x);
+            console.log(polygon_centroid.y);
+             //marker对象实例\添加
+            const marker2 = new AILabel.Marker('markerImg', {
+                src: '../static/images/marker.png',
+                x: polygon_centroid.x,
+                y: polygon_centroid.y,
+                offset: {x: -32, y: -32},
+            });
+             //注册监听事件删除标注
+            marker2.regEvent('click', function () {
+               gMap.mLayer.removeMarker(this);
+            });
+            gMap.mLayer.addMarker(marker2);
+            const featureStyle = mappingStyles[cMode].featureStyle;
+            // 元素添加展示
+            if (type === 'point') {
+                const {radius = 5} = options || {};
+                let fea = new AILabel.Feature.Point(`feature-${timestamp}`, points, {
+                    name: '中国'
+                }, featureStyle);
+                gFeatureLayer.addFeature(fea);
+            }
+            if (type === 'rect') {
+                let fea = new AILabel.Feature.Rect(`feature-${timestamp}`, points, {
+                    name: '中国'
+                }, featureStyle);
+                gFeatureLayer.addFeature(fea);
+            }
+            else if (type === 'polygon') {
+                let fea = new AILabel.Feature.Polygon(`feature-${timestamp}`, points, {
+                    name: '中国'
+                }, featureStyle);
+                gFeatureLayer.addFeature(fea);
+            }
+            else if (type === 'polyline') {
+                const {width = 5} = options || {};
+                let fea = new AILabel.Feature.Polyline(`feature-${timestamp}`, points, {
+                    name: '中国'
+                }, featureStyle, {width});
+                gFeatureLayer.addFeature(fea);
+            }
+            else if (type === 'mask') {
+                gMaskLayer.addMasks(points);
+            }
+        });
+        gMap.events.on('featureHover', function (feature, evt, wxy) {
+            // console.log('feature, evt, wxy', feature, evt, wxy);
+        });
+
+        const gTextStyle = new AILabel.Style({fontColor: '#696969', fontSize: 20, strokeColor: '#0000FF', opacity: 0});
+
+        // 文本层实例\添加
+        let gTextLayer = new AILabel.Layer.Text('textLayer', {zIndex: 2});
+        gMap.addLayer(gTextLayer);
+
+        // 文本实例\添加
+        const text = new AILabel.Text('id', {
+            pos: {x: -50, y: 50},
+            offset: {x: -180, y: 0},
+            width: 600,
+            maxWidth: 400,
+            text: '请点击下方选择文件按钮选择一张要编辑的图片'
+        }, gTextStyle);
+        gTextLayer.addText(text);
+
+         //marker对象实例\添加
+        const marker = new AILabel.Marker('markerImg', {
+            src: '../static/images/marker.png',
+            x: 0,
+            y: 0,
+            offset: {x: -32, y: -32},
+        });
+         //注册监听事件删除标注
+        marker.regEvent('click', function () {
+           gMap.mLayer.removeMarker(this);
+        });
+        gMap.mLayer.addMarker(marker);
+
+        gMap.events.on('geometryEditDone', (type, activeFeature, points) => {
+            if (type === 'rect' || type === 'polygon' || type === 'polyline') {
+                activeFeature.update({points});
+                // activeFeature.show();
+            }
+            else if (type === 'mask') {
+                for (let i = 0, len = activeFeature.length; i < len; i++) {
+                    const {layerId, masks} = activeFeature[i];
+                    console.log('newmasks', masks);
+                    const maskLayer = gMap.getLayerById(layerId);
+                    maskLayer && maskLayer.addMasks(masks, true);
+                    console.log('maskLayer', maskLayer);
+                }
+            }
+        });
+        // 目前此事件钩子只针对point类型数据
+        gMap.events.on('geometryRemove', (type, removeFeature) => {
+            if (type === 'point') {
+                gFeatureLayer.removeFeatureById(removeFeature.id);
+            }
+        });
+    </script>
+
+
+    <hr>
+    <div style="width: 80%; margin: auto">
+        <h3>该图片已标注区域如下：</h3>
+        <div style="border: saddlebrown solid 1px;height: 200px"></div>
+    </div>
+
 </body>
 </html>

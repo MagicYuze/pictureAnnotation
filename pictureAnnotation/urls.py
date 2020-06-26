@@ -21,6 +21,7 @@ from pictureAnnotationSystem import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('test/', views.showTest),
+    path('cut_pic/', views.cut_pic),
     path('file_upload/', views.file_upload),
     url(r'^$', views.showIndex),
 ]
