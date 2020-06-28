@@ -4664,3 +4664,7 @@ INFO 2020-06-28 17:24:24,555 basehttp 157 "POST /get_url/ HTTP/1.1" 200 251
 INFO 2020-06-28 17:24:24,565 basehttp 157 "GET /static/images/202006281651_%E7%99%BD%E5%BA%95_1.png HTTP/1.1" 304 0
 INFO 2020-06-28 17:24:29,344 basehttp 157 "POST /cut_pic/ HTTP/1.1" 200 120
 INFO 2020-06-28 17:24:29,356 basehttp 157 "GET /static/images/202006281651_%E7%99%BD%E5%BA%95_2.png HTTP/1.1" 200 687
+INFO 2020-06-28 17:47:45,493 autoreload 222 E:\Learning\python\pictureAnnotation\pictureAnnotationSystem\views.py changed, reloading.
+INFO 2020-06-28 17:47:48,216 autoreload 598 Watching for file changes with StatReloader
+INFO 2020-06-28 17:48:17,483 autoreload 222 E:\Learning\python\pictureAnnotation\pictureAnnotation\urls.py changed, reloading.
+INFO 2020-06-28 17:48:20,496 autoreload 598 Watching for file changes with StatReloader
