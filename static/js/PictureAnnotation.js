@@ -168,7 +168,7 @@ function setPicUrl($this) {
 
                 //刷新已编辑图片下拉框
                 getPictures();
-                //清空标注内容下拉框
+                //清空标注内容下拉框 并添加上“请选择”的选项
                 $('#annotation_select').empty();
                 $('#annotation_select').prepend("<option value='0' selected>--请选择--</option>");
                 //显示图片信息
