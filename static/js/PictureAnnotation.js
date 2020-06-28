@@ -168,6 +168,9 @@ function setPicUrl($this) {
 
                 //刷新已编辑图片下拉框
                 getPictures();
+                //清空标注内容下拉框
+                $('#annotation_select').empty();
+                $('#annotation_select').prepend("<option value='0' selected>--请选择--</option>");
                 //显示图片信息
                 $('#picInfos').show();
                 $('#anno_user_ip').text(ip);
