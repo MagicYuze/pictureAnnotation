@@ -22,6 +22,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('test/', views.showTest),
     path('cut_pic/', views.cut_pic),
+    path('get_url/', views.get_url),
+    path('get_pics/', views.get_pics),
+    path('get_pic_infos/', views.get_pic_infos),
     path('file_upload/', views.file_upload),
     url(r'^$', views.showIndex),
 ]

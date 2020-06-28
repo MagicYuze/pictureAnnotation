@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../static/css/xcConfirm.css">
 	<script src='../static/js/AILabel.pkg.min.js'></script>
 	<script src='../static/js/jquery-3.5.1.min.js'></script>
-	<script src='../static/js/jquery.imageLabel.min.js'></script>
+	<script src='../static/js/jquery.cookie.js'></script>
 	<script src='../static/js/PictureAnnotation.js'></script>
 	<script src='../static/js/xcConfirm.js'></script>
 
@@ -18,11 +18,33 @@
         let gImageLayer = null;
         let map_width = $('#map').width();
         let map_height = $('#map').height();
+        //进入页面 立即发送一次ajax请求
+        $(document).ready(function(){
+            getIp();
+
+        });
     </script>
+     {% load static %}
+    <link REL="SHORTCUT ICON" HREF="{% static "images/favicon.ico" %}"/>
 </head>
 <body>
-    <div id="map" style="width: 80%; margin: auto"></div>
-    <div id="tool" style="width: 80%;margin: auto;padding-bottom: 20px;">
+    <h1 style="color: blueviolet;text-align: center;text-align-last: center">图片标注系统</h1>
+    <div id="map" style="width: 80%; margin:0 auto;"></div>
+    {#    显示老图片信息#}
+    <div id="picInfos" style="display: none;width: 80%; margin:20px auto;text-align: center;text-align-last: center">
+        <b>标注者IP：</b><p id="anno_user_ip" style="display: inline;"></p>&emsp;
+        <b>标注者位置：</b><p id="anno_user_address" style="display: inline;"></p>&emsp;
+        <b>标注时间：</b><p id="anno_time" style="display: inline;"></p>
+    </div>
+    {#    显示工具栏#}
+    <div id="tool" style="width: 80%;margin: auto;padding-bottom: 20px;text-align: center">
+        <div class="command-btn">
+            <b>选择已编辑的图片：</b>
+            <select id="pic_select" style="text-align: center;text-align-last: center" onchange="selectOldPic()">
+                <option value='0'>--请选择--</option>
+            </select>
+        </div>
+
         <input id="pic" class="command-btn" type="file"  accept="image/png, image/jpeg, image/json" onchange="isConfirm(this)"/>
         <div id="drawRect" class="command-btn" onclick="setMode('drawRect')">绘制矩形</div>
         <div id="drawPolygon" class="command-btn" onclick="setMode('drawPolygon')">绘制多边形</div>
@@ -35,6 +57,7 @@
     {#    <div id="drawPolyline2" class="command-btn" onclick="setMode('drawPolyline2', '#9370DB', 20)">绘制多段线:紫色:20</div>#}
         <div id="pan" class="command-btn" onclick="setMode('pan')">平移</div>
     </div>
+
     <script>
         // 容器对象声明
         let gMap = new AILabel.Map('map', {zoom: map_height, cx: 0, cy: 0, zoomMax: map_height*10, zoomMin: map_height/10, autoPan: true, drawZoom: true});
@@ -47,28 +70,35 @@
         gMap.addLayer(gFeatureLayer);
 
         // 掩膜层实例\添加
+        /**
         let gMaskLayer = new AILabel.Layer.Mask('maskLayer', {zIndex: 2});
         gMap.addLayer(gMaskLayer);
+        **/
 
         afterGeometryDrawDone();
 
-
         const gTextStyle = new AILabel.Style({fontColor: '#696969', fontSize: 20, strokeColor: '#0000FF', opacity: 0});
-
         // 文本层实例\添加
         let gTextLayer = new AILabel.Layer.Text('textLayer', {zIndex: 2});
         gMap.addLayer(gTextLayer);
-
         // 文本实例\添加
         const text = new AILabel.Text('id', {
-            pos: {x: -50, y: 50},
+            pos: {x: -50, y: 60},
             offset: {x: -180, y: 0},
             width: 600,
             maxWidth: 400,
             text: '请点击下方选择文件按钮选择一张要编辑的图片'
         }, gTextStyle);
+        const text2 = new AILabel.Text('id', {
+            pos: {x: -50, y: 30},
+            offset: {x: -210, y: 0},
+            width: 600,
+            maxWidth: 400,
+            text: '或在“选择已编辑的图片”下拉框中选择已编辑的图片'
+        }, gTextStyle);
         gTextLayer.addText(text);
-
+        gTextLayer.addText(text2);
+        /**
         gMap.events.on('geometryEditDone', (type, activeFeature, points) => {
             if (type === 'rect' || type === 'polygon' || type === 'polyline') {
                 activeFeature.update({points});
@@ -90,13 +120,21 @@
                 gFeatureLayer.removeFeatureById(removeFeature.id);
             }
         });
+        **/
     </script>
 
 
     <hr>
-    <div style="width: 80%; margin: auto">
-        <h3>该图片已标注区域如下：</h3>
-        <div id="annotation" style="margin: auto;text-align: center">
+    <div style="width: 80%;height:500px; margin: auto;text-align: center;">
+        <h3 style="text-align: center">请根据标注内容查看标注的图片区域</h3>
+        <b>标注内容：</b>
+        <select style="text-align: center;text-align-last: center" id="annotation_select" onchange="changeAnnotationInfo()">
+            <option value="0">--请选择--</option>
+        </select>
+        <div id="annotation" style="margin:0 auto;text-align: center;display: none">
+            <img id="annotation_img" src='../static/images/bg.png'/><br/><br>
+            <b>标注信息：</b><p id="annotation_text" style="display: inline"></p>&emsp;
+            <b>标注时间：</b><p id="annotation_time" style="display: inline"></p>
         </div>
     </div>
 
