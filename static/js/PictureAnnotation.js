@@ -1,6 +1,7 @@
 var new_url = ''; //用于记录当前编辑的图片在服务器中的位置
 var user_ip = '0.0.0.0';//用于记录当前访问者的Ip
 var user_address = '无';//用于记录当前ip位置
+var timer = null; //监听器
 
 const mappingStyles = {
     drawRect: {
@@ -36,37 +37,29 @@ const mappingStyles = {
 const timestamp = new Date().getTime();
 
 function setMode(mode, color, size) {
-            const preCurrentMode = mode.indexOf('drawMask') === 0 ? 'drawMask' : mode;
-            const currentMode = preCurrentMode.indexOf('drawPolyline') === 0 ? 'drawPolyline' : preCurrentMode;
-            const drawStyle = mappingStyles[currentMode].drawStyle;
-            if (color) {
-                if (currentMode === 'drawPolyline') {
-                    drawStyle.strokeColor = color;
-                }
-                else {
-                    drawStyle.fillColor = color;
-                }
-            }
-            if (size) {
-                drawStyle.lineWeight = size;
-            }
-
-            gMap && gMap.setMode(currentMode, new AILabel.Style(drawStyle));
-
-            document.getElementById('drawRect').style.backgroundColor = '#fff';
-            document.getElementById('drawPolygon').style.backgroundColor = '#fff';
-            // document.getElementById('drawMask').style.backgroundColor = '#fff';
-            // document.getElementById('drawMask2').style.backgroundColor = '#fff';
-            // document.getElementById('drawMask3').style.backgroundColor = '#fff';
-            // document.getElementById('drawMask3').style.backgroundColor = '#fff';
-            // document.getElementById('clearMask').style.backgroundColor = '#fff';
-            // document.getElementById('drawPoint').style.backgroundColor = '#fff';
-            // document.getElementById('drawPolyline').style.backgroundColor = '#fff';
-            // document.getElementById('drawPolyline2').style.backgroundColor = '#fff';
-            document.getElementById('pan').style.backgroundColor = '#fff';
-
-            document.getElementById(mode).style.backgroundColor = '#3377ff';
+    const preCurrentMode = mode.indexOf('drawMask') === 0 ? 'drawMask' : mode;
+    const currentMode = preCurrentMode.indexOf('drawPolyline') === 0 ? 'drawPolyline' : preCurrentMode;
+    const drawStyle = mappingStyles[currentMode].drawStyle;
+    if (color) {
+        if (currentMode === 'drawPolyline') {
+            drawStyle.strokeColor = color;
         }
+        else {
+            drawStyle.fillColor = color;
+        }
+    }
+    if (size) {
+        drawStyle.lineWeight = size;
+    }
+
+    gMap && gMap.setMode(currentMode, new AILabel.Style(drawStyle));
+
+    document.getElementById('drawRect').style.backgroundColor = '#fff';
+    document.getElementById('drawPolygon').style.backgroundColor = '#fff';
+    document.getElementById('pan').style.backgroundColor = '#fff';
+
+    document.getElementById(mode).style.backgroundColor = '#3377ff';
+}
 
 
 
@@ -176,6 +169,7 @@ function setPicUrl($this) {
                 $('#anno_user_ip').text(ip);
                 $('#anno_user_address').text(address);
                 $('#anno_time').text(timeStr);
+                $('#delPictureBtn').show();
             }else{
                 alert("抱歉，该图片上传时出错，请重新上传");
             }
@@ -212,6 +206,10 @@ function afterGeometryDrawDone() {
         //绘制完后提示输入标注信息
         window.wxc.xcConfirm("请输入标注信息：", window.wxc.xcConfirm.typeEnum.input,{
             onOk:function(v){
+                if(v == ''){
+                    alert("输入内容不能为空，请重新标注");
+                    return 0;
+                }
                 //console.log(v);
                 let polygon_centroid = get_polygon_centroid(points);
                 //console.log(polygon_centroid);
@@ -271,14 +269,18 @@ function afterGeometryDrawDone() {
                 postData.append('type',type);
                 //console.log(points);
                 //发Ajax请求给服务器处理图片（需传参图片地址、选择区域的数组、标注内容）
+                let token = $.cookie('csrftoken');
                 $.ajax({
-                    url:'cut_pic/',
-                    type:'POST',
-                    data:postData,
+                    url: 'cut_pic/',
+                    type: 'POST',
+                    data: postData,
                     async: true,//同步上传
                     cache: false,//缓存
                     processData: false,  // 不处理数据
                     contentType: false, // 不设置内容类型
+                    headers: {
+                        'X-CSRFToken': token
+                    },
                     success:function (res) {
                         let msg = JSON.parse(res);
                         let code = msg.code;
@@ -287,22 +289,12 @@ function afterGeometryDrawDone() {
                             $('#annotation_img').attr('src',msg.url);
                             $('#annotation_text').text(v);
                             $('#annotation_time').text(msg.time);
-                            /**
-                             * 这里有点问题，应该截取后读数据库，然后再设置select选项
-                             * 暂时比对msg.url和new_url
-                             * 如果不同清空select
-                             * 不过这样也挺好用的。。
-                             * 好像没这个比较的必要 晚点再看一下
-                             */
-                            let newStr = new_url.split('_')[0];
-                            let annoStr = msg.url.split('_',3)[0];
-                            //console.log(new_url);
-                            //console.log(msg.url);
-                            if(newStr != annoStr)
-                                $('#annotation_select').empty();
                             $('#annotation_select').prepend("<option value='"+msg.annotation_id+"' selected>"+v+"</option>");
                             $("#annotation_select option[value='0']").remove();
                             $('#annotation').show();
+                            $('#tips').show();
+                            $('#deleteAnnotationBtn').show();
+                            $('#updateAnnotationBeforeBtn').show();
                         }else{
                             alert(msg.msg);
                         }
@@ -311,6 +303,75 @@ function afterGeometryDrawDone() {
             }
         });
     });
+}
+
+//修改标注的函数（可复用）
+function changeAnnotationInfoFun(msg) {
+    //console.log(msg);
+    let annotation_id = msg.annotation_id;
+    //console.log(new_url);
+    //修改下半部分展示界面（标注展示区）
+    $('#annotation_img').attr('src',msg.url);
+    $('#annotation_text').text(msg.text);
+    $('#annotation_time').text(msg.time);
+    if(msg.fun_type == 'selectChange'){
+        $("#annotation_select option[value='0']").remove();
+        $('#annotation').show();
+        $('#tips').show();
+        $('#deleteAnnotationBtn').show();
+        $('#updateAnnotationBeforeBtn').show();
+    }else if(msg.fun_type == 'delAnnotation'){
+        if(msg.url == 'null'){
+            $("#annotation_select").empty();
+            $('#annotation_select').prepend("<option value='0' selected>--请选择--</option>");
+            $('#annotation_img').attr('src','../static/images/bg.png');
+            $('#annotation').hide();
+            $('#tips').hide();
+            $('#deleteAnnotationBtn').hide();
+            $('#updateAnnotationBeforeBtn').hide();
+            //删除所有其他标注点
+            gMap.mLayer.removeAllMarkers();
+            //删除所有其他标注区域
+            gFeatureLayer.removeAllFeatures();
+            return 0;
+        }else{
+            $("#annotation_select").find("option").get($("#annotation_select").get(0).selectedIndex).remove();
+            $("#annotation_select").val(msg.annotation_min);
+            $('#annotation_img').attr('src',msg.url);
+        }
+    }
+
+    //修改上半部分展示界面（原图）
+    //console.log(msg);
+    const cMode = gMap.getMode();
+    let polygon_centroid = get_polygon_centroid(JSON.parse(msg.points));
+    //删除所有其他标注点
+    gMap.mLayer.removeAllMarkers();
+    //marker对象实例\添加
+    const marker = new AILabel.Marker('markerImg', {
+        src: '../static/images/marker.png',
+        x: polygon_centroid.x,
+        y: polygon_centroid.y,
+        offset: {x: -32, y: -32},
+    });
+    gMap.mLayer.addMarker(marker);
+    //删除所有其他标注区域
+    gFeatureLayer.removeAllFeatures();
+    const featureStyle = mappingStyles[cMode].featureStyle;
+    // 元素添加展示
+    // 生成元素唯一标志（时间戳）
+    if (msg.type === 'rect') {
+        let fea = new AILabel.Feature.Rect(`feature-${timestamp}`, JSON.parse(msg.points), {
+            name: 'name_rect'
+        }, featureStyle);
+        gFeatureLayer.addFeature(fea);
+    }
+    else if (msg.type === 'polygon') {
+        let fea = new AILabel.Feature.Polygon(`feature-${timestamp}`, JSON.parse(msg.points), {
+            name: 'name_polygon'
+        }, featureStyle);
+        gFeatureLayer.addFeature(fea);
+    }
 }
 
 //监听select，改变时发Ajax请求获取要查看的图片的AnnotationInfo
@@ -337,63 +398,8 @@ function changeAnnotationInfo() {
             let msg = JSON.parse(res);
             let code = msg.code;
             if(code == 200){
-                //console.log(msg);
-                //console.log(new_url);
-                //修改下半部分展示界面（标注展示区）
-                $('#annotation_img').attr('src',msg.url);
-                $('#annotation_text').text(msg.text);
-                $('#annotation_time').text(msg.time);
-                $("#annotation_select option[value='0']").remove();
-                $('#annotation').show();
-
-                //修改上半部分展示界面（原图）
-                //console.log(msg);
-                const cMode = gMap.getMode();
-                let polygon_centroid = get_polygon_centroid(JSON.parse(msg.points));
-                //删除所有其他标注点
-                gMap.mLayer.removeAllMarkers();
-                //marker对象实例\添加
-                const marker = new AILabel.Marker('markerImg', {
-                    src: '../static/images/marker.png',
-                    x: polygon_centroid.x,
-                    y: polygon_centroid.y,
-                    offset: {x: -32, y: -32},
-                });
-                gMap.mLayer.addMarker(marker);
-                //删除所有其他标注区域
-                gFeatureLayer.removeAllFeatures();
-                const featureStyle = mappingStyles[cMode].featureStyle;
-                // 元素添加展示
-                // 生成元素唯一标志（时间戳）
-                if (msg.type === 'point') {
-                    const {radius = 5} = options || {};
-                    let fea = new AILabel.Feature.Point(`feature-${timestamp}`, JSON.parse(msg.points), {
-                        name: 'name_point'
-                    }, featureStyle);
-                    gFeatureLayer.addFeature(fea);
-                }
-                if (msg.type === 'rect') {
-                    let fea = new AILabel.Feature.Rect(`feature-${timestamp}`, JSON.parse(msg.points), {
-                        name: 'name_rect'
-                    }, featureStyle);
-                    gFeatureLayer.addFeature(fea);
-                }
-                else if (msg.type === 'polygon') {
-                    let fea = new AILabel.Feature.Polygon(`feature-${timestamp}`, JSON.parse(msg.points), {
-                        name: 'name_polygon'
-                    }, featureStyle);
-                    gFeatureLayer.addFeature(fea);
-                }
-                else if (msg.type === 'polyline') {
-                    const {width = 5} = options || {};
-                    let fea = new AILabel.Feature.Polyline(`feature-${timestamp}`, JSON.parse(msg.points), {
-                        name: 'name_polyline'
-                    }, featureStyle, {width});
-                    gFeatureLayer.addFeature(fea);
-                }
-                else if (msg.type === 'mask') {
-                    gMaskLayer.addMasks(JSON.parse(msg.points));
-                }
+                msg.fun_type = 'selectChange';
+                changeAnnotationInfoFun(msg);
             }else{
                 alert(msg.msg);
             }
@@ -497,7 +503,7 @@ function selectOldPic() {
 
                 //让选择文件框的内容变为空
                 $('#pic').val('');
-
+                $('#delPictureBtn').show();
                 //显示图片信息
                 $('#picInfos').show();
                 $('#anno_user_ip').text(picInfo.ip);
@@ -526,6 +532,252 @@ function selectOldPic() {
             }
         }
     });
+}
+
+//删除某个标注
+function deleteAnnotation(){
+    let annotation_id = $('#annotation_select option:selected').val();
+    //Ajax请求删除图片以及数据库中的标注信息
+    let postData = new FormData();
+    postData.append('pic_url',new_url);
+    postData.append('annotation_id',annotation_id);
+    let token = $.cookie('csrftoken');
+    $.ajax({
+        url: 'del_annotation/',
+        type: 'POST',
+        data: postData,
+        async: true,//同步上传
+        cache: false,//缓存
+        processData: false,  // 不处理数据
+        contentType: false, // 不设置内容类型
+        headers: {
+            'X-CSRFToken': token
+        },
+        success: function (res) {
+            let msg = JSON.parse(res);
+            if(msg.code == 200){
+                msg.fun_type = 'delAnnotation';
+                msg.annotation_id = annotation_id;
+                changeAnnotationInfoFun(msg);
+            }else{
+                alert(msg.msg);
+            }
+        }
+    });
+}
+
+//删除某张图片及其所有标注
+function delPicture() {
+    //（当前图片标注将会全部消失，请在确认保存后执行此操作）
+    if(confirm("确认要删除当前图片吗？（删除后所有标注也将被删除，且此操作不可逆）")){
+        //Ajax请求删除图片以及所有的标注信息
+        let postData = new FormData();
+        postData.append('pic_url',new_url);
+        let token = $.cookie('csrftoken');
+        $.ajax({
+            url: 'del_picture/',
+            type: 'POST',
+            data: postData,
+            async: true,//同步上传
+            cache: false,//缓存
+            processData: false,  // 不处理数据
+            contentType: false, // 不设置内容类型
+            headers: {
+                'X-CSRFToken': token
+            },
+            success: function (res) {
+                let msg = JSON.parse(res);
+                if(msg.code == 200){
+                    //重置map
+                    $('#map').height('500px');
+                    $('#map').width('80%');
+                    //如果存在gImageLayer（其他图片）则先删除掉
+                    if(gImageLayer != null)
+                        gMap.removeLayer(gImageLayer);
+                    //重置gMap画布大小
+                    gMap.resize($('#map').width(),$('#map').height());
+                    //移除矢量要素
+                    gFeatureLayer.removeAllFeatures();
+                    //删除所有其他标注点
+                    gMap.mLayer.removeAllMarkers();
+                    const gTextStyle = new AILabel.Style({fontColor: '#696969', fontSize: 20, strokeColor: '#0000FF', opacity: 0});
+                    // 文本层实例\添加
+                    let gTextLayer = new AILabel.Layer.Text('textLayer', {zIndex: 2});
+                    gMap.addLayer(gTextLayer);
+                    // 文本实例\添加
+                    const text = new AILabel.Text('id', {
+                        pos: {x: -50, y: 60},
+                        offset: {x: -180, y: 0},
+                        width: 600,
+                        maxWidth: 400,
+                        text: '请点击下方选择文件按钮选择一张要编辑的图片'
+                    }, gTextStyle);
+                    const text2 = new AILabel.Text('id', {
+                        pos: {x: -50, y: 30},
+                        offset: {x: -210, y: 0},
+                        width: 600,
+                        maxWidth: 400,
+                        text: '或在“选择已编辑的图片”下拉框中选择已编辑的图片'
+                    }, gTextStyle);
+                    gTextLayer.addText(text);
+                    gTextLayer.addText(text2);
+
+                    //隐藏图片的信息
+                    $('#picInfos').hide();
+
+                    //将pic_select的val变为0（“请选择的状态”）并删除当前选中项
+                    if($('#pic_select option:selected').val() != '0'){
+                        $("#pic_select").find("option").get($("#pic_select").get(0).selectedIndex).remove();
+                        $('#pic_select').prepend("<option value='0' selected>--请选择--</option>")
+                    }
+
+                    //让选择文件框的内容变为空
+                    $('#pic').val('');
+
+                    //隐藏删除图片的按钮
+                    $('#delPictureBtn').hide();
+
+                    //隐藏标注信息区域
+                    $('#annotation').hide();
+                    $('#tips').hide();
+
+                    //清空annotation_select 并添加请选择
+                    $('#annotation_select').empty();
+                    $('#annotation_select').prepend("<option value='0' selected>--请选择--</option>");
+
+                    //隐藏编辑标注和删除标注的button
+                    $('#updateAnnotationBeforeBtn').hide();
+                    $('#deleteAnnotationBtn').hide();
+                }else{
+                    alert(msg.msg);
+                }
+            }
+        });
+    }
+}
+
+//更新标注区域的前置函数
+function updateAnnotationBefore() {
+    //console.log(gFeatureLayer.getAllFeatures()[0]);
+    //让选区变为active状态
+    gFeatureLayer.getAllFeatures()[0].active();
+    //删除Marker
+    gMap.mLayer.removeAllMarkers();
+    //隐藏前置button
+    $("#updateAnnotationBeforeBtn").hide();
+    //显示后置button
+    $("#updateAnnotationAfterBtn").show();
+    //监听active是否发生变化了
+    timer=setInterval(function() {
+            //console.log();
+            if(!gFeatureLayer.getAllFeatures()[0]['activeStatus']){
+                clearInterval(timer);
+                updateAnnotationAfter();
+            }
+        },1000);
+}
+
+//更新标注区域的后置函数
+function updateAnnotationAfter() {
+    //console.log((gFeatureLayer.getAllFeatures()[0]['points']));
+    let points = gFeatureLayer.getAllFeatures()[0]['points'];
+    let pointsStr = JSON.stringify(points);
+    //让标注区域禁止编辑
+    gFeatureLayer.getAllFeatures()[0].deActive();
+    //重新绘制maker
+    let polygon_centroid = get_polygon_centroid(points);
+    const marker = new AILabel.Marker('markerImg', {
+        src: '../static/images/marker.png',
+        x: polygon_centroid.x,
+        y: polygon_centroid.y,
+        offset: {x: -32, y: -32},
+    });
+    gMap.mLayer.addMarker(marker);
+
+    //发Ajax请求，修改图片
+    //Ajax请求删除图片以及所有的标注信息
+    let postData = new FormData();
+    postData.append('url',new_url);
+    postData.append('annotation_id',$('#annotation_select option:selected').val());
+    postData.append('points',pointsStr);
+    let token = $.cookie('csrftoken');
+    $.ajax({
+        url: 'update_annotation_pic/',
+        type: 'POST',
+        data: postData,
+        async: true,//同步上传
+        cache: false,//缓存
+        processData: false,  // 不处理数据
+        contentType: false, // 不设置内容类型
+        headers: {
+            'X-CSRFToken': token
+        },
+        success: function (res) {
+            let msg = JSON.parse(res);
+            if(msg.code == 200){
+                $('#annotation_img').attr('src',msg.url + '?' + new Date().getTime());
+                $('#annotation_time').text(msg.time);
+            }else{
+                alert(msg.msg);
+            }
+        }
+    });
+
+    //隐藏后置button
+    $("#updateAnnotationAfterBtn").hide();
+    //显示前置button
+    $("#updateAnnotationBeforeBtn").show();
+}
+
+//修改标注的内容前置
+function changeAnnotationTextBefore(){
+    //两按钮交替显示
+    $('#changeTextBeforeBtn').hide();
+    $('#changeTextAfterBtn').show();
+    $('#annotation_text').hide();
+    $('#text_input').val($('#annotation_text').text());
+    $('#text_input').show();
+
+}
+
+//修改标注的内容后置
+function changeAnnotationTextAfter(){
+    let new_text = $('#text_input').val();
+    //Ajax请求修改标注信息的内容
+    let postData = new FormData();
+    postData.append('pic_url',new_url);
+    postData.append('annotation_id',$('#annotation_select option:selected').val());
+    postData.append('new_text',new_text);
+    let token = $.cookie('csrftoken');
+    $.ajax({
+        url: 'update_annotation_text/',
+        type: 'POST',
+        data: postData,
+        async: true,//同步上传
+        cache: false,//缓存
+        processData: false,  // 不处理数据
+        contentType: false, // 不设置内容类型
+        headers: {
+            'X-CSRFToken': token
+        },
+        success: function (res) {
+            let msg = JSON.parse(res);
+            if(msg.code == 200){
+                $('#annotation_text').text(msg.text);
+                $('#annotation_time').text(msg.time);
+                $('#annotation_select option:selected').text(msg.text)
+            }else{
+                alert(msg.msg);
+            }
+        }
+    });
+
+
+    //两按钮交替显示
+    $('#changeTextAfterBtn').hide();
+    $('#changeTextBeforeBtn').show();
+    $('#text_input').hide();
+    $('#annotation_text').show();
 }
 
 

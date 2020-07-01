@@ -26,5 +26,9 @@ urlpatterns = [
     path('get_pics/', views.get_pics),
     path('get_pic_infos/', views.get_pic_infos),
     path('file_upload/', views.file_upload),
+    path('del_annotation/', views.del_annotation),
+    path('del_picture/', views.del_picture),
+    path('update_annotation_pic/', views.cut_pic),
+    path('update_annotation_text/', views.update_annotation_text),
     url(r'^$', views.showIndex),
 ]

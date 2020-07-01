@@ -7,7 +7,7 @@ from datetime import datetime
 import cv2
 import numpy as np
 from PIL import Image
-from django.db.models import Max
+from django.db.models import Max, Min
 
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -103,9 +103,15 @@ def file_upload(request):
 
 
 # 分割图片
-@csrf_exempt
 def cut_pic(request):
+    edit_type = 0 # 记录此次请求目的（0创建 还是 1修改）
     response = HttpResponse()
+    try: # 如果有annotation_id参数 则说明是编辑，反之是创建
+        annotation_id = request.POST["annotation_id"]
+        edit_type = 1
+    except MultiValueDictKeyError:
+        edit_type = 0
+
     try:
         if request.POST["url"] == '':
             msg = {'code': 402, 'msg': "请先选择一张图片再进行标注操作"}
@@ -113,11 +119,9 @@ def cut_pic(request):
             return response
         old_url = request.POST["url"].split('/', 1)[1]
         points = request.POST["points"]
-        # print(points)
-        text = request.POST["ctext"]
-        # print(text)
-        dtype = request.POST["type"]
-        # print(text)
+        if edit_type == 0:
+            text = request.POST["ctext"]
+            dtype = request.POST["type"]
     except MultiValueDictKeyError:
         msg = {'code': 401, 'msg': "缺少参数"}
         response.write(json.dumps(msg))
@@ -147,34 +151,43 @@ def cut_pic(request):
     imgroi = ROI & src  # ROI和原图进行与运算，筛出原图中的ROI区域
     # cv2.imshow("ROI", imgroi)
 
-    # print(old_url)
+
     # 获取该图片标注编号的最大值 为了给ROI命名
     pic_info = models.PictureInfo.objects.get(pic_url = old_url)
     annotation_info = pic_info.annotationinfo_set.all()
-    if len(annotation_info) == 0:
-        annotation_id = 1
-    else:
-        annotation_id = annotation_info.aggregate(Max('annotation_id'))['annotation_id__max']+1
-    # print(annotation_id)
+    if edit_type == 0:
+        if len(annotation_info) == 0:
+            annotation_id = 1
+        else:
+            annotation_id = annotation_info.aggregate(Max('annotation_id'))['annotation_id__max']+1
+        # print(annotation_id)
     # ROI的文件名（含images/）
     new_url = old_url.split('.')[0] + '_' + str(annotation_id) + '.' + old_url.split('.')[1]
-    # 将此记录存入数据库
+    # 将此记录存入/更新数据库
     nowTime = datetime.now()
     nowTimeStr = nowTime.strftime('%Y-%m-%d %H:%M:%S')
-    annotation_info_obj = models.AnnotationInfo()
-    annotation_info_obj.pic_info = pic_info
-    annotation_info_obj.annotation_id = annotation_id
-    annotation_info_obj.annotation_text = text
+    if edit_type == 0:
+        annotation_info_obj = models.AnnotationInfo()
+        annotation_info_obj.pic_info = pic_info
+        annotation_info_obj.annotation_id = annotation_id
+        annotation_info_obj.annotation_text = text
+        annotation_info_obj.annotation_type = dtype
+    else:
+        annotation_info_obj = annotation_info.get(annotation_id = annotation_id)
+
     annotation_info_obj.annotation_time = nowTime
     annotation_info_obj.annotation_points = points
-    annotation_info_obj.annotation_type = dtype
     annotation_info_obj.save()
 
     # ROI的访问地址
     new_path = settings.STATICFILES_DIRS[0] + '/' + new_url
+    if os.path.exists(new_path):
+        os.remove(new_path)
 
     # 获取外接矩形四个点的坐标
     x, y, w, h = cv2.boundingRect(pts)
+
+    # 如果是编辑图片，则先删除原图
 
     # 保存图片
     cv2.imencode('.jpg', imgroi[y:y+h, x:x+w])[1].tofile(new_path)
@@ -194,7 +207,7 @@ def cut_pic(request):
     return response
 
 
-# 根据annotation_id和old_url获取图片的相关信息
+# 根据annotation_id和old_url获取标注图片的相关信息
 @csrf_exempt
 def get_url(request):
     response = HttpResponse()
@@ -216,7 +229,7 @@ def get_url(request):
     try:
         annotation_info = models.PictureInfo.objects.get(pic_url = old_url).annotationinfo_set.get(annotation_id = annotation_id)
     except AnnotationInfo.DoesNotExist:
-        msg = {'code': 403, 'msg': "查询图片时出现异常，请刷新后重试"}
+        msg = {'code': 410, 'msg': "查询图片时出现异常，请刷新后重试"}
         response.write(json.dumps(msg))
         return response
     msg = {
@@ -324,5 +337,161 @@ def get_pic_infos(request):
     return response
 
 
+# 删除某个标注 并返回列表最小的一个标注的信息
+def del_annotation(request):
+    response = HttpResponse()
+    try:
+        if request.POST["pic_url"] == '':
+            msg = {'code': 402, 'msg': "未检测到当前图片，请刷新页面重试"}
+            response.write(json.dumps(msg))
+            return response
+        pic_url = request.POST["pic_url"].split('/', 1)[1]
+        annotation_id = request.POST["annotation_id"]
+    except MultiValueDictKeyError:
+        msg = {'code': 401, 'msg': "缺少参数"}
+        response.write(json.dumps(msg))
+        return response
+
+    # print(pic_url,annotation_id, flush=True)
+
+    path = settings.STATICFILES_DIRS[0] + '/' + pic_url.split('.')[0] + '_' + annotation_id + '.' + pic_url.split('.')[1]
+    # print(path,flush=True)
+    if os.path.exists(path):
+        os.remove(path)
+    else:
+        msg = {'code': 411, 'msg': "要删除的文件不存在，请刷新页面后重试"}
+        response.write(json.dumps(msg))
+        return response
+
+    try:
+        # 查找数据 并删除
+        pic_info = models.PictureInfo.objects.get(pic_url=pic_url)
+        annotation_info = pic_info.annotationinfo_set.get(annotation_id=annotation_id)
+        annotation_info.delete()
+    except AnnotationInfo.DoesNotExist:
+        msg = {'code': 403, 'msg': "查询图片时出现异常，请刷新后重试"}
+        response.write(json.dumps(msg))
+        return response
+    try:
+        # 查找annotation_id最小的一条数据 并记录 如果没有 url设置为 null
+        annotation_min = pic_info.annotationinfo_set.get(
+            annotation_id=pic_info.annotationinfo_set.all().aggregate(Min('annotation_id'))['annotation_id__min'])
+        # print(annotation_min,flush=True)
+        msg = {
+            'code': 200,
+            'url': 'static/' + pic_url.split('.')[0] + '_' + str(annotation_min.annotation_id) + '.' + pic_url.split('.')[1],
+            'text': annotation_min.annotation_text,
+            'time': annotation_min.annotation_time.strftime("%Y-%m-%d %H:%M:%S"),
+            'points': annotation_min.annotation_points,
+            'annotation_min': annotation_min.annotation_id,
+            'type': annotation_min.annotation_type
+        }
+    except AnnotationInfo.DoesNotExist:
+        msg = {
+            'code': 200,
+            'url': 'null',
+        }
+
+    respMsg = json.dumps(msg)
+    response.write(respMsg)
+    return response
 
 
+# 删除某个图片及其所有标注
+def del_picture(request):
+    response = HttpResponse()
+    try:
+        if request.POST["pic_url"] == '':
+            msg = {'code': 402, 'msg': "未检测到当前图片，请刷新页面重试"}
+            response.write(json.dumps(msg))
+            return response
+        pic_url = request.POST["pic_url"].split('/', 1)[1]
+    except MultiValueDictKeyError:
+        msg = {'code': 401, 'msg': "缺少参数"}
+        response.write(json.dumps(msg))
+        return response
+
+    # print(pic_url,flush=True)
+
+    # path = settings.STATICFILES_DIRS[0] + '/' + pic_url.split('.')[0] + '_' + annotation_id + '.' + pic_url.split('.')[1]
+    # # print(path,flush=True)
+    # if os.path.exists(path):
+    #     os.remove(path)
+    # else:
+    #     msg = {'code': 411, 'msg': "要删除的文件不存在，请刷新页面后重试"}
+    #     response.write(json.dumps(msg))
+    #     return response
+
+    try:
+        # 查找数据
+        pic_info = models.PictureInfo.objects.get(pic_url=pic_url)
+    except PictureInfo.DoesNotExist:
+        msg = {'code': 403, 'msg': "查询图片时出现异常，请刷新后重试"}
+        response.write(json.dumps(msg))
+        return response
+
+    # 删除图片文件
+    pic_path = settings.STATICFILES_DIRS[0] + '/' + pic_url
+    if os.path.exists(pic_path):
+        os.remove(pic_path)
+    else:
+        msg = {'code': 411, 'msg': "要删除的文件不存在，请刷新页面后重试"}
+        response.write(json.dumps(msg))
+        return response
+
+    # 迭代pic的标注数据，并删除文件
+    annotations = pic_info.annotationinfo_set.all()
+    for annotation in annotations:
+        annotation_path = settings.STATICFILES_DIRS[0] + '/' + pic_url.split('.')[0] + '_' + str(annotation.annotation_id) + '.' + pic_url.split('.')[1]
+        if os.path.exists(annotation_path):
+            os.remove(annotation_path)
+
+    # 级联删除数据库中的记录
+    pic_info.delete()
+    msg = {
+        'code': 200,
+        'msg': '删除该图片及其所有标注成功'
+    }
+    respMsg = json.dumps(msg)
+    response.write(respMsg)
+    return response
+
+
+# 更新标注内容
+def update_annotation_text(request):
+    response = HttpResponse()
+    try:
+        if request.POST["pic_url"] == '':
+            msg = {'code': 402, 'msg': "未检测到当前图片，请刷新页面重试"}
+            response.write(json.dumps(msg))
+            return response
+        pic_url = request.POST["pic_url"].split('/', 1)[1]
+        annotation_id = request.POST["annotation_id"]
+        new_text = request.POST["new_text"]
+    except MultiValueDictKeyError:
+        msg = {'code': 401, 'msg': "缺少参数"}
+        response.write(json.dumps(msg))
+        return response
+
+    try:
+        # 查找数据
+        annotation_info = models.PictureInfo.objects.get(pic_url=pic_url).annotationinfo_set.get(annotation_id=annotation_id)
+    except PictureInfo.DoesNotExist:
+        msg = {'code': 403, 'msg': "查询图片时出现异常，请刷新后重试"}
+        response.write(json.dumps(msg))
+        return response
+
+    nowTime = datetime.now()
+    nowTimeStr = nowTime.strftime('%Y-%m-%d %H:%M:%S')
+    annotation_info.annotation_text = new_text
+    annotation_info.annotation_time = nowTime
+    annotation_info.save()
+
+    msg = {
+        'code': 200,
+        'time': nowTimeStr,
+        'text': new_text
+    }
+    respMsg = json.dumps(msg)
+    response.write(respMsg)
+    return response

@@ -21,7 +21,6 @@
         //进入页面 立即发送一次ajax请求
         $(document).ready(function(){
             getIp();
-
         });
     </script>
      {% load static %}
@@ -32,9 +31,9 @@
     <div id="map" style="width: 80%; margin:0 auto;"></div>
     {#    显示老图片信息#}
     <div id="picInfos" style="display: none;width: 80%; margin:20px auto;text-align: center;text-align-last: center">
-        <b>标注者IP：</b><p id="anno_user_ip" style="display: inline;"></p>&emsp;
-        <b>标注者位置：</b><p id="anno_user_address" style="display: inline;"></p>&emsp;
-        <b>标注时间：</b><p id="anno_time" style="display: inline;"></p>
+        <b>创建者IP：</b><p id="anno_user_ip" style="display: inline;"></p>&emsp;
+        <b>创建者位置：</b><p id="anno_user_address" style="display: inline;"></p>&emsp;
+        <b>创建时间：</b><p id="anno_time" style="display: inline;"></p>
     </div>
     {#    显示工具栏#}
     <div id="tool" style="width: 80%;margin: auto;padding-bottom: 20px;text-align: center">
@@ -46,21 +45,15 @@
         </div>
 
         <input id="pic" class="command-btn" type="file"  accept="image/png, image/jpeg, image/json" onchange="isConfirm(this)"/>
+        <button id="delPictureBtn" class="command-btn" style="display: none;"  onclick="delPicture()">删除此图片</button>
         <div id="drawRect" class="command-btn" onclick="setMode('drawRect')">绘制矩形</div>
         <div id="drawPolygon" class="command-btn" onclick="setMode('drawPolygon')">绘制多边形</div>
-    {#    <div id="drawMask" class="command-btn" style="background-color: #3377ff;" onclick="setMode('drawMask', '#FF0000', 10)">掩膜:红色:10</div>#}
-    {#    <div id="drawMask2" class="command-btn" onclick="setMode('drawMask2', '#0000FF', 20)">掩膜:蓝色:20</div>#}
-    {#    <div id="drawMask3" class="command-btn" onclick="setMode('drawMask3', '#9370DB', 30)">掩膜:紫色:30</div>#}
-    {#    <div id="clearMask" class="command-btn" onclick="setMode('clearMask')">掩膜:擦除</div>#}
-    {#    <div id="drawPoint" class="command-btn" onclick="setMode('drawPoint')">绘制点</div>#}
-    {#    <div id="drawPolyline" class="command-btn" onclick="setMode('drawPolyline', '#0000FF', 10)">绘制多段线:蓝色:10</div>#}
-    {#    <div id="drawPolyline2" class="command-btn" onclick="setMode('drawPolyline2', '#9370DB', 20)">绘制多段线:紫色:20</div>#}
         <div id="pan" class="command-btn" onclick="setMode('pan')">平移</div>
     </div>
 
     <script>
         // 容器对象声明
-        let gMap = new AILabel.Map('map', {zoom: map_height, cx: 0, cy: 0, zoomMax: map_height*10, zoomMin: map_height/10, autoPan: true, drawZoom: true});
+        let gMap = new AILabel.Map('map', {zoom: map_height, cx: 0, cy: 0, zoomMax: map_height*10, zoomMin: map_height/10, autoPan: true, drawZoom: true,autoFeatureSelect:false});
         // 设置当前操作模式为‘drawRect’
         setMode('drawRect');
         gMap.setMaskBounds(-540, 540, -360, 360); // 设置涂抹区域
@@ -68,12 +61,6 @@
         // 矢量层实例\添加
         let gFeatureLayer = new AILabel.Layer.Feature('featureLayer', {zIndex: 3, transparent: false});
         gMap.addLayer(gFeatureLayer);
-
-        // 掩膜层实例\添加
-        /**
-        let gMaskLayer = new AILabel.Layer.Mask('maskLayer', {zIndex: 2});
-        gMap.addLayer(gMaskLayer);
-        **/
 
         afterGeometryDrawDone();
 
@@ -98,10 +85,12 @@
         }, gTextStyle);
         gTextLayer.addText(text);
         gTextLayer.addText(text2);
-        /**
+
         gMap.events.on('geometryEditDone', (type, activeFeature, points) => {
             if (type === 'rect' || type === 'polygon' || type === 'polyline') {
                 activeFeature.update({points});
+                //console.log(points);
+                //console.log(type);
                 // activeFeature.show();
             }
             else if (type === 'mask') {
@@ -114,6 +103,7 @@
                 }
             }
         });
+        /**
         // 目前此事件钩子只针对point类型数据
         gMap.events.on('geometryRemove', (type, removeFeature) => {
             if (type === 'point') {
@@ -130,11 +120,26 @@
         <b>标注内容：</b>
         <select style="text-align: center;text-align-last: center" id="annotation_select" onchange="changeAnnotationInfo()">
             <option value="0">--请选择--</option>
-        </select>
-        <div id="annotation" style="margin:0 auto;text-align: center;display: none">
-            <img id="annotation_img" src='../static/images/bg.png'/><br/><br>
-            <b>标注信息：</b><p id="annotation_text" style="display: inline"></p>&emsp;
-            <b>标注时间：</b><p id="annotation_time" style="display: inline"></p>
+        </select>&emsp;
+        <button id="updateAnnotationBeforeBtn" style="display: none" onclick="updateAnnotationBefore()">编辑该标注</button>&emsp;
+        <button id="updateAnnotationAfterBtn" style="display: none" onclick="updateAnnotationAfter()">编辑完成</button>&emsp;
+        <button id="deleteAnnotationBtn" style="display: none" onclick="deleteAnnotation()">删除该标注</button>
+        <div id="tips" style="text-align: center;display: none">
+            <p>
+                <b>编辑标注使用说明：</b>点击 编辑该标注 按钮后可对原标注进行修改
+            </p>
+            <p>
+                修改完成后可以点击 编辑完成 按钮 或 直接点击选区外其他区域 完成修改
+            </p>
+            <br>
+        </div>
+        <div id="annotation" style="margin:20px auto;text-align: center;display: none">
+            <img id="annotation_img" src='../static/images/bg.png'/><br/><br><br>
+            <b>标注信息：</b><p id="annotation_text" style="display: inline"></p>
+            <input id="text_input" type="text" style="display: none">&emsp;
+            <b>标注时间：</b><p id="annotation_time" style="display: inline"></p>&emsp;
+            <button id="changeTextBeforeBtn" onclick="changeAnnotationTextBefore()">修改标注信息</button>
+            <button id="changeTextAfterBtn" style="display: none" onclick="changeAnnotationTextAfter()">完成修改</button>
         </div>
     </div>
 
