@@ -4,6 +4,6 @@ django-cors-headers==3.4.0
 mysqlclient==1.4.6
 numpy==1.19.0
 opencv-python==4.2.0.34
-Pillow==7.1.2
+Pillow==9.3.0
 pytz==2020.1
 sqlparse==0.3.1
